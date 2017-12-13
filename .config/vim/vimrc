@@ -1,0 +1,79 @@
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+
+" Auto install vim-plug if it doesn't exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Plugins
+Plug 'arcticicestudio/nord-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'wincent/command-t'
+Plug 'ervandew/supertab'
+Plug 'airblade/vim-gitgutter'
+
+call plug#end()
+
+" Use arrows
+nnoremap <silent> <Esc><Up>A <Nop>
+nnoremap <silent> <Esc><Down>B <Nop>
+nnoremap <silent> <Esc><Right>C <Nop>
+nnoremap <silent> <Esc><Left>D <Nop>
+set nocompatible
+set backspace=indent,eol,start
+
+" Theme config
+let g:nord_italic_comments = 1
+let g:nord_comment_brightness = 0
+set guifont=Robot\ Mono\ Light:h18
+" set colorcolumn=80
+set showmatch
+set number
+colorscheme nord
+" Turn off mode in lightline
+set noshowmode
+
+let g:lightline = {
+\ 'colorscheme': 'nord',
+\ }
+
+" Highlight found words in search
+set hlsearch
+" Exit search with escape key
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
+" Keep more info in memory to speed things up
+set hidden
+set history=100
+
+" Adjust leader key
+let mapleader=","
+
+" Reload changes with `leader-s`
+map <leader>s :source ~/.vimrc<CR>
+
+" Syntax settings
+filetype indent on
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set autoindent
+set list
+set listchars=space:.
+
+" Ignore files
+set wildignore+=*.log,*.sql,*.cache
+
+" NERDTree config
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeMapActivateNode='<right>'
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']

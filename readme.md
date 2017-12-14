@@ -63,7 +63,7 @@ rm -rf fonts
 
 2. Install the Nord theme for iTerm 2 (located in ~/.config/iterm2)
 
-3. Set iTerm 2's font to a Powerline font (I am using Source Code Pro for Powerline)
+3. in iTerm, apply PowerLine for Regular Font and Non-ASCII Font by clicking each Change Font button and select the PowerLine font.
 
 4. Link the following to ~/.config:
 
@@ -71,7 +71,11 @@ rm -rf fonts
 # Setup ZSH
 ln -s ~/.config/zshrc ~.zshrc
 source ~/.zshrc
+```
 
+## Vim
+
+```
 # Setup vim
 ln -s ~/.config/vim/vimrc ~/.vimrc
 ln -s ~/.config/vim ~/.vim
@@ -82,6 +86,15 @@ ruby extconf.rb
 make
 ```
 
-## Vim
+Now you can open up projects in vim and use `,t` for Command-T, and `,n` for NerdTree.
 
-Now you can open up projects in vim and use `,t` for Command-T, and `,n` for NerdTree. 
+## Tmux
+```
+ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/.config/tmux ~/.tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux
+tmux source ~/.tmux.conf
+```
+
+Inside tmux, hit control-a, shift-i. This will install all the plugins.

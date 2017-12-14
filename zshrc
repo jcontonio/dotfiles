@@ -114,3 +114,6 @@ alias ls="ls -l --color=always"
 alias grep="grep --color=always"
 alias egrep="egrep --color=always"
 alias gs="gst"
+
+
+source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

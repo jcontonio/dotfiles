@@ -2,30 +2,35 @@
 
 **Before cloning this repo, do the following**
 
-1. Install Homebrew
+1. Install xCode command line tools
+
+`xcode-select --install`
+
+2. Install Homebrew
 
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-2. Install Oh-my-ZSH
+3. Install Oh-my-ZSH
 
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
-3. Install Spaceship theme
+4. Install Spaceship theme
 
 `curl -o - https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/install.zsh | zsh`
 
-4. Install tmux
+5. Install tmux
 
 `brew install tmux`
 
-5. Install rbenv w/ whatever version you want for system (important for vim install) (2.3.3)
+6. Install rbenv w/ whatever version you want for system (important for vim install) (2.3.3)
 
 ```
 brew install rbenv
 rbenv install 2.3.3
+rbenv global 2.3.3
 ```
 
-6. Install coreutils
+7. Install coreutils
 
 ```
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
@@ -36,7 +41,7 @@ brew install coreutils
 
 `brew install vim --with-custom-ruby`
 
-8. Install Powerline fonts
+9. Install Powerline fonts
 
 ```
 # clone
@@ -70,4 +75,13 @@ source ~/.zshrc
 # Setup vim
 ln -s ~/.config/vim/vimrc ~/.vimrc
 ln -s ~/.config/vim ~/.vim
+
+# Compile Command-T
+cd ~/.vim/plugged/command-t/ruby/command-t/ext/command-t
+ruby extconf.rb
+make
 ```
+
+## Vim
+
+Now you can open up projects in vim and use `,t` for Command-T, and `,n` for NerdTree. 

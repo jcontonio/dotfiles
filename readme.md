@@ -1,3 +1,15 @@
+# Random macOS tips / setup stuff that I recommend
+
+**Change the screenshot location**
+
+```
+mkdir ~/Screenshots
+defaults write com.apple.screencapture location ~/Screenshots
+killall SystemUIServer
+```
+
+Now drag that Screenshots folder from the Finder to your Dock. Now you have super fast drag'n'drop access to screenshots! Adjust the sorting to your liking. 
+
 # My ZSH / VIM / TMUX setup
 
 **Before cloning this repo, do the following**

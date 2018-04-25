@@ -1,0 +1,35 @@
+{
+    "workbench.colorTheme": "Default Light+",
+    // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
+    "editor.lineHeight": 24,
+    // Enables font ligatures
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.snippetSuggestions": "top",
+    // Controls if file decorations should use badges.
+    "explorer.decorations.badges": false,
+    "materialTheme.cache.workbench.settings": {
+        "themeColours": "Light"
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDragAndDrop": false,
+    "editor.minimap.enabled": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "sublimeTextKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true,
+    "workbench.editor.enablePreview": false,
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "all",
+    "editor.wordWrapColumn": 80,
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "editor.wordWrap": "bounded",
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 80,
+        "editor.quickSuggestions": false
+    },
+}

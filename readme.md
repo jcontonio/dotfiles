@@ -121,3 +121,13 @@ tmux source ~/.tmux.conf
 ```
 
 Inside tmux, hit control-a, shift-i. This will install all the plugins.
+
+## VSCode
+
+Link the settings, keybindings, and snippets
+
+```
+ln -s ~/.config/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/.config/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+ln -s ~/.config/vscode/snippets/ ~/Library/Application\ Support/Code/User/snippets
+```

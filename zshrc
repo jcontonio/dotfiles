@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='atom'
+  export EDITOR='code'
 fi
 
 # Compilation flags
@@ -115,6 +115,8 @@ alias grep="grep --color=always"
 alias egrep="egrep --color=always"
 alias gs="gst"
 alias gpl="ggpull"
-
+alias divsd='cd ~/Sites/divs/src/main/resources/public && ./dev_build.sh && cd ~/Sites/divs && JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/ ~/Sites/divs/scripts/deploy.sh'
 
 source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"

@@ -81,7 +81,7 @@ rm -rf fonts
 
 ```
 # Setup ZSH
-ln -s ~/.config/zshrc ~.zshrc
+ln -s ~/.config/zshrc ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -91,6 +91,17 @@ source ~/.zshrc
 # Setup vim
 ln -s ~/.config/vim/vimrc ~/.vimrc
 ln -s ~/.config/vim ~/.vim
+```
+
+### Install plugins
+
+1. Open vim `vim`
+2. Run PlugClean and PlugInstall, then compile Command-T
+
+```
+# From vim
+:PlugClean
+:PlugInstall
 
 # Compile Command-T
 cd ~/.vim/plugged/command-t/ruby/command-t/ext/command-t

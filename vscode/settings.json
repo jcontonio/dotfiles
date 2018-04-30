@@ -26,10 +26,13 @@
         80,
         100
     ],
-    "editor.wordWrap": "bounded",
     "[markdown]": {
         "editor.wordWrap": "bounded",
         "editor.wordWrapColumn": 80,
         "editor.quickSuggestions": false
     },
+    "files.insertFinalNewline": true,
+    "editor.fontSize": 13,
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
 }

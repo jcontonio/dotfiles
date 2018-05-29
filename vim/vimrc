@@ -29,8 +29,9 @@ set nocompatible
 set backspace=indent,eol,start
 
 " Theme config
-let g:nord_italic_comments = 1
+let g:nord_italic_comments = 0
 let g:nord_comment_brightness = 0
+let g:nord_italic = 0
 set guifont=Robot\ Mono\ Light:h18
 " set colorcolumn=80
 set showmatch

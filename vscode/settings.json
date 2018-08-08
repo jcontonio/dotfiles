@@ -33,6 +33,11 @@
     },
     "files.insertFinalNewline": true,
     "editor.fontSize": 13,
-    "files.autoSave": "onFocusChange",
+    "files.autoSave": "off",
     "files.trimTrailingWhitespace": true,
+    "git.enableSmartCommit": true,
+    "workbench.statusBar.feedback.visible": false,
+    // Prettier config
+    "prettier.eslintIntegration": true,
+    "javascript.format.enable": false,
 }

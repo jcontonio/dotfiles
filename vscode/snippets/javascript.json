@@ -10,5 +10,18 @@
 			"console.log('$1')",
 		],
 		"description": "Log output to console"
+	},
+	"React Functional Component": {
+		"prefix": "rfc",
+		"body": [
+			"import React from 'react'",
+			"import PropTypes from 'prop-types'\n",
+			"const ${1:ComponentName} = ({ ${2:props} }) => {",
+			"\treturn $0",
+			"}\n",
+			"$1.propTypes = {",
+			"}\n",
+			"export default $1"
+		]
 	}
 }

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -9,7 +16,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_12HR=true
@@ -66,10 +73,7 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-autosuggestions
-  ssh-agent
-  git
-  tmux
+  ssh-agent git zsh-autosuggestions zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -106,22 +110,26 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 test -e ~/.dir_colors && \
    eval `dircolors -b ~/.dir_colors`
 
-alias ls="ls -l --color=always"
+echo 'export CLICOLOR=1' >> ~/.zshrc
+alias ls="ls -lG"
 alias grep="grep --color=always"
 alias egrep="egrep --color=always"
-alias gs="gst"
-alias gpl="ggpull"
-alias divsd='cd ~/Sites/divs/src/main/resources/public && ./dev_build.sh && cd ~/Sites/divs && JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/ ~/Sites/divs/scripts/deploy.sh'
+alias python='/opt/homebrew/bin/python3'
+alias pip='/opt/homebrew/bin/pip3'
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+alias python='python3'
+alias vim="nvim"
+
+# From git plugin, but we are removing git plugin
+# alias gf='git fetch'
+alias gs="git status"
+# alias gc='git commit'
 
 # source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -144,3 +152,38 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+source /Users/jcontonio/.docker/init-zsh.sh || true # Added by Docker Desktop
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1
+export CLICOLOR=1

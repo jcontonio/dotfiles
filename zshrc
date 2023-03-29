@@ -126,7 +126,7 @@ alias vim="nvim"
 
 # From git plugin, but we are removing git plugin
 # alias gf='git fetch'
-# alias gs="git status"
+alias gs="git status"
 # alias gc='git commit'
 
 # source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

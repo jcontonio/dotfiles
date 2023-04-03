@@ -27,7 +27,7 @@ mason_lspconfig.setup({
 		"html",
 		"jsonls",
 		"lua_ls",
-		"standardrb",
+		-- "standardrb",
 		"svelte",
 		"tsserver",
 		"yamlls",

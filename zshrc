@@ -218,3 +218,4 @@ export CLICOLOR=1
 export CLICOLOR=1
 export CLICOLOR=1
 export CLICOLOR=1
+export CLICOLOR=1

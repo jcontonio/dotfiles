@@ -17,11 +17,7 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_12HR=true
-SPACESHIP_XCODE_SHOW_LOCAL=false
-SPACESHIP_BATTERY_SHOW=false
+POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME="spaceship"
@@ -86,12 +82,14 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='code'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='code'
+# fi
+export EDITOR='vim'
 
+#
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -114,7 +112,6 @@ export NVM_DIR="$HOME/.nvm"
 test -e ~/.dir_colors && \
    eval `dircolors -b ~/.dir_colors`
 
-echo 'export CLICOLOR=1' >> ~/.zshrc
 alias ls="ls -lG"
 alias grep="grep --color=always"
 alias egrep="egrep --color=always"
@@ -157,65 +154,3 @@ source /Users/jcontonio/.docker/init-zsh.sh || true # Added by Docker Desktop
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1
-export CLICOLOR=1

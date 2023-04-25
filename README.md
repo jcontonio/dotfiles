@@ -57,10 +57,15 @@ This is all assuming you’re running [iTerm2](https://iterm2.com/)
   ```
 3. Link the config
   ```zsh
+  # optional but recommended
+  mv ~/.local/share/nvim ~/.local/share/nvim.bak
+  mv ~/.local/state/nvim ~/.local/state/nvim.bak
+  mv ~/.cache/nvim ~/.cache/nvim.bak
   ln -s ~/dotfiles/config/nvim/init.lua ~/.config/nvim/init.lua
   ln -s ~/dotfiles/config/nvim/lua ~/.config/nvim/lua
   ```
-4. Open `nvim`. This should automatically install all the plugins using Packer and Mason. If not, run `:PackerSync` and `:MasonInstallAll` in nvim.
+4. Open `nvim`
+5. It is recommended to run `:checkhealth` after installation
 
 ## Tmux Setup
 

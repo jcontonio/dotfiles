@@ -1,18 +1,2 @@
-require("jcontonio.plugins-setup")
-require("jcontonio.core.options")
-require("jcontonio.core.keymaps")
-require("jcontonio.core.colorscheme")
-
--- plugins
-require("jcontonio.plugins.nvim-tree")
-require("jcontonio.plugins.comment")
-require("jcontonio.plugins.lualine")
-require("jcontonio.plugins.telescope")
-require("jcontonio.plugins.nvim-cmp")
-require("jcontonio.plugins.lsp.mason")
-require("jcontonio.plugins.lsp.lspsaga")
-require("jcontonio.plugins.lsp.lspconfig")
-require("jcontonio.plugins.lsp.null-ls")
-require("jcontonio.plugins.autopairs")
-require("jcontonio.plugins.treesitter")
-require("jcontonio.plugins.gitsigns")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")

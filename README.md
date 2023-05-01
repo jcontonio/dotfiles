@@ -76,9 +76,10 @@ Now you can open up projects in vim and use `,t` for Command-T, and `,n` for Ner
 
 ## Tmux
 ```
-ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/.config/tmux ~/.tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+ln -s ~/dotfiles/config/tmux/tmux.conf ~/.config/.tmux.conf
+ln -s ~/dotfiles/config/tmux ~/.config/tmux
+mkdir ~/.config/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 tmux
 tmux source ~/.tmux.conf
 ```

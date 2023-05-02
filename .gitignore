@@ -1,4 +1,3 @@
 .DS_Store
 configstore
-tmux/plugins
-vim/plugged
+config/tmux/plugins/

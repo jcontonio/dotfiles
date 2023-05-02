@@ -1,0 +1,27 @@
+import:
+ - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+
+env:
+  TERM: xterm-256color
+
+font:
+  normal:
+    family: MesloLGS NF
+    style: Regular
+  bold:
+    family: MesloLGS NF, Bold
+    style: Bold
+  italic:
+    family: MesloLGS NF, Regular Italic
+    style: Italic
+  bold_italic:
+    family: MesloLGS NF, Bold Italic
+    style: Bold Italic
+  size: 11
+
+window:
+  opacity: 0.9
+  padding:
+    x: 10
+    y: 10
+

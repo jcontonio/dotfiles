@@ -115,9 +115,9 @@ test -e ~/.dir_colors && \
 alias ls="ls -lG"
 alias grep="grep --color=always"
 alias egrep="egrep --color=always"
-alias python='/opt/homebrew/bin/python3'
-alias pip='/opt/homebrew/bin/pip3'
-alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+# alias python='/opt/homebrew/bin/python3'
+# alias pip='/opt/homebrew/bin/pip3'
+# alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 alias python='python3'
 alias vim="nvim"
 

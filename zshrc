@@ -112,7 +112,7 @@ export NVM_DIR="$HOME/.nvm"
 test -e ~/.dir_colors && \
    eval `dircolors -b ~/.dir_colors`
 
-alias ls="ls -lG"
+alias ls="ls -l --color"
 alias grep="grep --color=always"
 alias egrep="egrep --color=always"
 # alias python='/opt/homebrew/bin/python3'

@@ -1,0 +1,3 @@
+mocdir = /home/jcontonio/.config/moc
+MusicDir = "~/Music"
+TiMidity_Config = /etc/timidity.cfg

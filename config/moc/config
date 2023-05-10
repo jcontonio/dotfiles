@@ -63,7 +63,7 @@
 # within which it was originally started.
 
 # Show file titles (title, author, album) instead of file names?
-#ReadTags = yes
+ReadTags = yes
 
 # In which directory do you store your music files?  If you specify it
 # you will be able to jump straight to this directory with the '-m'
@@ -71,13 +71,13 @@
 #
 # Example:    MusicDir = "/home/joe/music"
 #
-MusicDir = "~/Music"
+MusicDir = "/home/jcontonio/Music"
 
 # Start in the music directory by default?  If set to 'no', start
 # in the directory being viewed when the was client last active or,
 # as a last resort, the directory in which the client is being started.
 # A single directory on the command line takes precedence.
-#StartInMusicDir = no
+StartInMusicDir = yes
 
 # The number of lines which are retained in an in-memory circular logging
 # buffer.  A value of zero indicates that lines will be written directly
@@ -235,7 +235,7 @@ MusicDir = "~/Music"
 #
 # Example:    Theme = laras_theme
 #
-Theme = "~/.config/moc/themes/nightshade"
+Theme = nightshade
 
 # The theme used when running on an xterm.
 #
@@ -284,7 +284,7 @@ mocdir = /home/jcontonio/.config/moc
 #NonUTFXterm = no
 
 # Should MOC precache files to assist gapless playback?
-#Precache = yes
+Precache = yes
 
 # Remember the playlist after exit?
 #SavePlaylist = yes

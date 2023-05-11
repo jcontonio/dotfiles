@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='code'
 # fi
-export EDITOR='vim'
+export EDITOR='nvim'
 
 #
 # Compilation flags

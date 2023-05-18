@@ -29,27 +29,41 @@ This is all assuming you’re running [iTerm2](https://iterm2.com/)
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   ```
 3. Install the [iTerm2 color theme](./iterm2/coolnight.itermcolors)
-4. Install Oh-my-ZSH
+4. Install nvm
+  ```zsh
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  ```
+5. Install Oh-my-ZSH and plugins
   ```zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
   ```
-5. Link your .zshrc to the one in the repo
+6. Link your .zshrc to the one in the repo
   ```zsh
   ln -s ~/dotfiles/zshrc ~/.zshrc
   source ~/.zshrc
   ```
-6. Install PowerLevel10k theme
+7. Install PowerLevel10k theme
   * If you’re not on macOS and iTerm2, you’ll want to [install the Nerd Fonts first](https://github.com/romkatv/powerlevel10k#fonts). The fonts will be installed automatically with the theme script otherwise.
 
   ```zsh
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  ```
+8. Run the config for p10k
+  ```zsh
+  p10k configure
+  ```
+9. Install the latest Node LTS
+  ```zsh
+  nvm install --lts
   ```
 
 ## Neovim Setup
 
 1. Install Neovim
   ```zsh
-  brew install neovim ripgrep
+  brew install neovim ripgrep fd lazygit
   ```
 2. Create the nvim config directory if it doesn't exist already
   ```zsh
@@ -76,12 +90,11 @@ Now you can open up projects in vim and use `,t` for Command-T, and `,n` for Ner
 
 ## Tmux
 ```
-ln -s ~/dotfiles/config/tmux/tmux.conf ~/.config/tmux.conf
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 mkdir ~/.config/tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 tmux
-tmux source ~/.tmux.conf
+tmux source ~/.config/tmux/tmux.conf
 ```
 
 Inside tmux, hit control-a, shift-i. This will install all the plugins.

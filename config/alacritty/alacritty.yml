@@ -6,16 +6,16 @@ env:
 
 font:
   normal:
-    family: FiraCode Nerd Font
+    family: "MesloLGS NF" 
     style: Regular
   bold:
-    family: FiraCode Nerd Font, Bold
+    family: "MesloLGS NF"
     style: Bold
   italic:
-    family: FiraCode Nerd Font, Light
+    family: "MesloLGS NF"
     style: Italic
   bold_italic:
-    family: FiraCode Nerd Font, Semibold
+    family: "MesloLGS NF"
     style: Bold Italic
   size: 11
 

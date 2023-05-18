@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+
+config=$HOME/.config/hypr
+scripts=$config/scripts
+
+# Set the power management
+swayidle -w \
+	timeout 300 'swaylock -f -c 000000' \
+	timeout 600 'systemctl suspend' \
+	before-sleep 'swaylock -f -c 000000' &
+
+# Handle notifications
+dunst &
+
+# Adjust the cursor
+hyprctl setcursor Adwaita 24
+
+# Adjust the wallpaper
+$scripts/wall $config/wallpapers/3.jpg &
+
+# other
+/usr/lib/polkit-kde-authentication-agent-1 &
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+notify-send "hello $(whoami)" &

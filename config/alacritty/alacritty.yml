@@ -25,3 +25,6 @@ window:
     x: 16
     y: 16
 
+# keybindings
+# key_bindings:
+  # - { key: K, mods: Control,  action: Clear }

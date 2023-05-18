@@ -6,7 +6,7 @@ scripts=$config/scripts
 # Set the power management
 swayidle -w \
 	timeout 300 'swaylock -f -c 000000' \
-	timeout 600 'systemctl suspend' \
+	timeout 1800 'systemctl suspend' \
 	before-sleep 'swaylock -f -c 000000' &
 
 # Handle notifications
@@ -17,6 +17,9 @@ hyprctl setcursor Adwaita 24
 
 # Adjust the wallpaper
 $scripts/wall $config/wallpapers/3.jpg &
+
+# Launch waybar
+$scripts/launch_waybar &
 
 # other
 /usr/lib/polkit-kde-authentication-agent-1 &

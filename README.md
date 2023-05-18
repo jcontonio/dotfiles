@@ -63,7 +63,7 @@ This is all assuming you’re running [iTerm2](https://iterm2.com/)
 
 1. Install Neovim
   ```zsh
-  brew install neovim ripgrep fd lazygit
+  brew install neovim ripgrep fd lazygit unzip wget fish
   ```
 2. Create the nvim config directory if it doesn't exist already
   ```zsh

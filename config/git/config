@@ -3,3 +3,5 @@
 	name = Jay Contonio
 [core]
 	editor = nvim
+[fetch]
+  prune = true

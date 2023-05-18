@@ -1,0 +1,5 @@
+[user]
+	email = jay@conton.io
+	name = Jay Contonio
+[core]
+	editor = nvim

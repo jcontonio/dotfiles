@@ -6,3 +6,6 @@ config/tmux/plugins/
 
 # MOC
 config/moc/last_directory
+
+# NCMPCPP
+config/ncmpcpp/error.log

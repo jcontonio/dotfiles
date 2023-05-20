@@ -8,6 +8,8 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$PATH:$(go env GOPATH)/bin"
+export GOPATH=/usr/local/lib/go
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Path to your oh-my-zsh installation.

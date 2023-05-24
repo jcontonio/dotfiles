@@ -1,11 +1,11 @@
 .DS_Store
 configstore
-config/tmux/plugins/
+dot_config/tmux/plugins/
 **/*/cache
 **/*/pid
 
 # MOC
-config/moc/last_directory
+dot_config/moc/last_directory
 
 # NCMPCPP
-config/ncmpcpp/error.log
+dot_config/ncmpcpp/error.log

@@ -1,3 +1,21 @@
 README.md
 iterm2
 dot_config/tmux/plugins/*
+
+{{- if eq .chezmoi.os "darwin" }}
+
+dot_config/cava
+dot_config/dunst
+dot_config/electon-flags.conf
+dot_config/hypr
+dot_config/i3
+dot_config/kitty
+dot_config/moc
+dot_config/mpDris2
+
+{{ else if eq .chezmoi.os "linux" }}
+
+dot_config/skhd
+dot_config/yabai
+
+{{- end }}

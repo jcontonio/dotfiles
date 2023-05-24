@@ -12,6 +12,9 @@ swayidle -w \
 # Handle notifications
 dunst &
 
+# Start thunar in daemon mode to automount drives etc
+thunar --daemon &
+
 # Adjust the cursor
 hyprctl setcursor Adwaita 24
 

@@ -1,6 +1,19 @@
 [user]
 	email = jay@conton.io
 	name = Jay Contonio
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnjiS08QVP/SwmliVkIo3Be76n5QpjiCMkQDBcWPpeC
+
+[gpg]
+  format = ssh
+
+{{ if eq .chezmoi.os "darwin" }}
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{ end }}
+
+[commit]
+  gpgsign = true
+
 [core]
 	editor = nvim
 [fetch]

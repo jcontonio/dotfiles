@@ -10,6 +10,7 @@ fi
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 PATH="$PATH:$HOME/.local/bin"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -150,10 +151,13 @@ load-nvmrc() {
   fi
 }
 add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# load-nvmrc
 
 # Load rbenv automatically by appending
 eval "$(rbenv init - zsh)"
+
+# Init zoxide
+eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

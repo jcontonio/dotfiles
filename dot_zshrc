@@ -129,6 +129,16 @@ alias vim="nvim"
 alias gs="git status"
 # alias gc='git commit'
 
+# Adds fuzzyfind to terminal and opens in neovim
+nf() {
+  nvim "$(fd . -t f | fzf)"
+}
+
+# Opens a directory in neovim with fuzzy finding
+cdf() {
+  cd "$(fd . -t d | fzf)" || return
+}
+
 # source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # place this after nvm initialization!

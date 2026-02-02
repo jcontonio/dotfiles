@@ -141,6 +141,12 @@ cdf() {
 
 # source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
+# For pgenv
+# Necessary to use the XDG cache.
+export PGENV_ROOT="$HOME/.cache/pgenv"
+# Necessary to ensure `pgenv` and all PostgreSQL CLIs are on your path.
+export PATH="$HOME/.cache/pgenv/bin:$HOME/.cache/pgenv/pgsql/bin:$PATH"
+
 # place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {

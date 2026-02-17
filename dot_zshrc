@@ -19,7 +19,7 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME="spaceship"
@@ -107,10 +107,6 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 test -e ~/.dir_colors && \
    eval `dircolors -b ~/.dir_colors`
 
@@ -141,36 +137,8 @@ cdf() {
 
 # source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
-# For pgenv
-# Necessary to use the XDG cache.
-export PGENV_ROOT="$HOME/.cache/pgenv"
-# Necessary to ensure `pgenv` and all PostgreSQL CLIs are on your path.
-export PATH="$HOME/.cache/pgenv/bin:$HOME/.cache/pgenv/pgsql/bin:$PATH"
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
-
-# Load rbenv automatically by appending
-eval "$(rbenv init - zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
+eval "$(direnv hook zsh)"
 
 # Init zoxide
 eval "$(zoxide init zsh)"

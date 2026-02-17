@@ -1,0 +1,20 @@
+# DNF5 actions hook: create Snapper snapshots around package transactions.
+#
+# Install target on Fedora:
+#   /etc/dnf/libdnf5-plugins/actions.d/snapper.actions
+#
+# Preconditions:
+# - libdnf5-plugin-actions installed/enabled
+# - snapper installed and configured (config "root")
+#
+# Official format reference:
+# https://dnf5.readthedocs.io/en/latest/libdnf5_plugins/actions.8.html
+
+# Capture transaction command as snapshot description.
+pre_transaction::::/usr/bin/sh -c echo\ "tmp.snapper_descr=$(ps\ -o\ command\ --no-headers\ -p\ '${pid}')"
+
+# Create pre snapshot and persist its number in actions plugin tmp variable.
+pre_transaction::::/usr/bin/sh -c echo\ "tmp.snapper_pre_number=$(snapper\ create\ -c\ root\ -t\ pre\ -p\ -d\ '${tmp.snapper_descr}')"
+
+# Create post snapshot linked to pre snapshot and clear temporary variables.
+post_transaction::::/usr/bin/sh -c [\ -n\ "${tmp.snapper_pre_number}"\ ]\ &&\ snapper\ create\ -c\ root\ -t\ post\ --pre-number\ "${tmp.snapper_pre_number}"\ -d\ "${tmp.snapper_descr}"\ ;\ echo\ tmp.snapper_pre_number\ ;\ echo\ tmp.snapper_descr

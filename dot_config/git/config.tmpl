@@ -1,6 +1,6 @@
 [user]
-	email = jay@conton.io
-	name = Jay Contonio
+  email = jay@conton.io
+  name = Jay Contonio
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnjiS08QVP/SwmliVkIo3Be76n5QpjiCMkQDBcWPpeC
 
 [gpg]
@@ -15,12 +15,12 @@
   gpgsign = true
 
 [core]
-	editor = nvim
+  editor = nvim
 [fetch]
   prune = true
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 [core]
-        sshCommand = ssh.exe
+  sshCommand = ssh.exe
 {{   end }}
 {{ end }}

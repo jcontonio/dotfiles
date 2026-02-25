@@ -5,6 +5,8 @@
   - [Fedora (DNF)](#fedora-dnf)
 - [Additional Setup](#additional-setup)
 
+Personal dotfiles managed with `chezmoi`, with OS-specific templates and setup docs for quickly reproducing my shell, editor, tmux, and package environment on macOS and Linux.
+
 ## System Setup
 
 ### macOS (Homebrew)

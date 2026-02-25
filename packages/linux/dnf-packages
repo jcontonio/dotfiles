@@ -28,6 +28,7 @@ pkg-config
 bat
 eza
 git-delta
+gitmux
 zoxide
 
 # Media, codecs, and acceleration

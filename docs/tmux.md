@@ -42,6 +42,8 @@ The tmux prefix key is `Ctrl+a`.
 | Reload tmux config              | `Ctrl+a r`                                                 |
 | Show all key bindings           | `Ctrl+a ?`                                                 |
 
+Note: `Ctrl+k` clear is bound after plugin initialization in `tmux.conf` so it overrides plugin keybindings.
+
 ## Navigation with Neovim
 
 Primary navigation keys across Neovim splits (including file tree windows) and tmux panes:
@@ -67,6 +69,17 @@ tmux new -s work
 # Reattach later
 tmux attach -t work
 ```
+
+## Saving Sessions
+
+If you mean "keep my session so I can come back later today", tmux already does that.
+
+- Detach: `Ctrl+a d`
+- Reattach: `tmux attach -t <name>`
+
+Your session remains until tmux server exits (or you kill that session).
+
+If you mean "persist across reboot", use a session plugin like `tmux-resurrect` and `tmux-continuum`.
 
 ## Cheat Sheet
 

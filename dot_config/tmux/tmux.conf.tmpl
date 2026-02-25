@@ -93,4 +93,4 @@ set -g window-status-format "#[fg=#a5adce,bg=#303446] #I:#W #[fg=#303446,bg=#232
 set -g window-status-current-format "#[fg=#232634,bg=#ca9ee6,bold] #I:#W#{?window_zoomed_flag, [Z],} #[fg=#ca9ee6,bg=#232634,nobold]"
 
 # Git segment + clock on the right (via gitmux).
-set -g status-right '#[fg=#232634,bg=#81c8be] #(if command -v gitmux >/dev/null 2>&1; then gitmux "#{pane_current_path}"; else printf " no-gitmux"; fi) #[fg=#81c8be,bg=#303446]#[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '
+set -g status-right '#[fg=#232634,bg=#81c8be] #(if command -v gitmux >/dev/null 2>&1; then gitmux -cfg ~/.config/gitmux/gitmux.conf "#{pane_current_path}"; else printf " no-gitmux"; fi) #[fg=#81c8be,bg=#303446]#[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '

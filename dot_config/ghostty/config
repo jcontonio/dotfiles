@@ -16,4 +16,4 @@ keybind = cmd+alt+down=csi:1;7B
 keybind = super+k=text:\x0b
 
 # Preserve Shift+Enter as a distinct key (CSI-u) for apps inside tmux.
-keybind = shift+enter=text:\x1b[13;2u
+keybind = shift+enter=csi:13;2u

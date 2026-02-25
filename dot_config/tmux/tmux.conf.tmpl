@@ -54,9 +54,10 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # Theme defaults
-set -g @catppuccin_flavour 'frappe'
+set -g @catppuccin_flavor 'frappe'
+# set -g @catppuccin_status_background "none"
 set -g status-position bottom
-set -g status-style "bg=#303446,fg=#c6d0f5"
+# set -g status-style "bg=#303446,fg=#c6d0f5"
 set -g status-left-length 99
 set -g status-right-length 99
 set -g status-justify left
@@ -72,6 +73,9 @@ run '~/.config/tmux/plugins/tpm/tpm'
 run-shell '~/.config/tmux/plugins/tpm/bin/install_plugins'
 
 # Final statusline overrides after plugin initialization.
+# set -g status-style "bg=#303446,fg=#c6d0f5"
+# set -g status-bg "#303446"
+# set -g status-fg "#c6d0f5"
 set -g status-interval 5
 set -g automatic-rename on
 set -g automatic-rename-format "#{b:pane_current_path}"
@@ -82,16 +86,16 @@ set -g pane-border-style "fg=#51576d"
 set -g pane-active-border-style "fg=#51576d"
 
 # Status bar colors and segment styling.
-set -g message-style "bg=#303446,fg=#ca9ee6"
-set -g mode-style "bg=#303446,fg=#f2d5cf"
+# set -g message-style "bg=#303446,fg=#ca9ee6"
+# set -g mode-style "bg=#303446,fg=#f2d5cf"
 
 # Session segment on the left.
-set -g status-left "#[fg=#8caaee,bg=#303446,bold] #S "
+# set -g status-left "#[fg=#8caaee,bg=#303446,bold] #S "
 
 # Window list styling in the center.
 set -g window-status-separator ""
-set -g window-status-format "#[fg=#949cbb,bg=#303446] #I:#W "
-set -g window-status-current-format "#[fg=#ca9ee6,bg=#303446,bold] #I:#W#{?window_zoomed_flag, [Z],} "
+# set -g window-status-format "#[fg=#949cbb,bg=#303446] #I:#W "
+# set -g window-status-current-format "#[fg=#ca9ee6,bg=#303446,bold] #I:#W#{?window_zoomed_flag, [Z],} "
 
 # Git segment + clock on the right (via gitmux).
-set -g status-right '#[fg=#81c8be,bg=#303446] #(if command -v gitmux >/dev/null 2>&1; then gitmux -cfg ~/.config/gitmux/gitmux.conf "#{pane_current_path}"; else printf " no-gitmux"; fi) #[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '
+set -g status-right '#(if command -v gitmux >/dev/null 2>&1; then gitmux -cfg ~/.config/gitmux/gitmux.conf "#{pane_current_path}"; else printf " no-gitmux"; fi) %H:%M %d-%b-%y '

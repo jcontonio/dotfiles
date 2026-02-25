@@ -94,6 +94,24 @@ If you mean "persist across reboot", this config uses `tmux-resurrect` + `tmux-c
 - Auto-save: handled by `tmux-continuum`
 - Auto-restore on tmux start: enabled
 
+## Terminal and SSH Compatibility
+
+This tmux config is intended to work across modern terminals (Ghostty, iTerm2, Terminal.app, etc.) and on SSH hosts.
+
+- It prefers `tmux-256color` when available and falls back to `screen-256color` if not.
+- It enables extended key handling so modified keys (for example `Shift+Enter`) can pass through.
+- On terminal/key issues, always test inside and outside tmux with `cat -v` first.
+
+For SSH hosts running these dotfiles:
+
+- Ensure `tmux` is recent enough to support extended keys.
+- Ensure terminfo is available for `tmux-256color` (or rely on fallback to `screen-256color`).
+- Restart tmux server after config changes:
+  ```zsh
+  tmux kill-server
+  tmux
+  ```
+
 ## Cheat Sheet
 
 - [tmuxcheatsheet.com](https://tmuxcheatsheet.com/)

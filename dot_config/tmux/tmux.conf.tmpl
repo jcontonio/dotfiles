@@ -86,12 +86,12 @@ set -g message-style "bg=#303446,fg=#ca9ee6"
 set -g mode-style "bg=#303446,fg=#f2d5cf"
 
 # Session segment on the left.
-set -g status-left "#[fg=#8caaee,bold] #S "
+set -g status-left "#[fg=#8caaee,bg=#303446,bold] #S "
 
 # Window list styling in the center.
 set -g window-status-separator ""
-set -g window-status-format "#[fg=#949cbb] #I:#W "
-set -g window-status-current-format "#[fg=#ca9ee6,bold] #I:#W#{?window_zoomed_flag, [Z],} "
+set -g window-status-format "#[fg=#949cbb,bg=#303446] #I:#W "
+set -g window-status-current-format "#[fg=#ca9ee6,bg=#303446,bold] #I:#W#{?window_zoomed_flag, [Z],} "
 
 # Git segment + clock on the right (via gitmux).
-set -g status-right '#[fg=#81c8be] #(if command -v gitmux >/dev/null 2>&1; then gitmux -cfg ~/.config/gitmux/gitmux.conf "#{pane_current_path}"; else printf " no-gitmux"; fi) #[fg=#c6d0f5] %H:%M %d-%b-%y '
+set -g status-right '#[fg=#81c8be,bg=#303446] #(if command -v gitmux >/dev/null 2>&1; then gitmux -cfg ~/.config/gitmux/gitmux.conf "#{pane_current_path}"; else printf " no-gitmux"; fi) #[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '

@@ -4,7 +4,7 @@ return {
     cond = function()
       return vim.env.TMUX ~= nil
     end,
-    event = "VeryLazy",
+    lazy = false,
     init = function()
       -- Use explicit embedding with lualine bridge.
       vim.g.tpipeline_autoembed = 0
@@ -18,6 +18,22 @@ return {
       vim.opt.cmdheight = 0
       vim.opt.showmode = false
       vim.opt.ruler = false
+
+      local group = vim.api.nvim_create_augroup("tpipeline_refresh", { clear = true })
+      vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "WinEnter", "FocusGained" }, {
+        group = group,
+        callback = function()
+          vim.cmd("silent! call tpipeline#update()")
+        end,
+      })
+
+      -- Ensure first render updates even if startup events race with plugin init.
+      vim.defer_fn(function()
+        vim.cmd("silent! call tpipeline#update()")
+      end, 50)
+      vim.defer_fn(function()
+        vim.cmd("silent! call tpipeline#update()")
+      end, 250)
     end,
   },
   {

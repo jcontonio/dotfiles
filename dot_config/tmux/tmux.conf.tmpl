@@ -53,8 +53,10 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 # Theme defaults
 set -g @catppuccin_flavour 'frappe'
 set -g status-position bottom
-set -g status-left-length 60
-set -g status-right-length 120
+set -g status-style bg=default
+set -g status-left-length 99
+set -g status-right-length 99
+set -g status-justify centre
 set -g @continuum-restore 'on'
 set -g @resurrect-capture-pane-contents 'on'
 
@@ -77,7 +79,6 @@ set -g pane-border-style "fg=#51576d"
 set -g pane-active-border-style "fg=#51576d"
 
 # Status bar colors and segment styling.
-set -g status-style "bg=#232634,fg=#c6d0f5"
 set -g message-style "bg=#ca9ee6,fg=#232634"
 set -g mode-style "bg=#f2d5cf,fg=#232634"
 

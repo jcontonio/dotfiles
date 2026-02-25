@@ -75,6 +75,18 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Accept autosuggestion with Tab when available, otherwise run normal completion.
+tab-complete-or-accept() {
+  if [[ -n "${POSTDISPLAY:-}" ]]; then
+    zle autosuggest-accept
+  else
+    zle expand-or-complete
+  fi
+}
+zle -N tab-complete-or-accept
+bindkey -M emacs '^I' tab-complete-or-accept
+bindkey -M viins '^I' tab-complete-or-accept
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

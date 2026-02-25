@@ -10,6 +10,7 @@ unbind-key C-b
 bind-key C-a send-prefix
 set -g base-index 1
 set -g renumber-windows on
+bind , command-prompt -I "#W" "rename-window -- '%%'"
 
 # Pane and window operations
 unbind '"'
@@ -68,3 +69,28 @@ if-shell '[ ! -d ~/.config/tmux/plugins/tpm ]' \
 # Start TPM and install any missing plugins automatically.
 run '~/.config/tmux/plugins/tpm/tpm'
 run-shell '~/.config/tmux/plugins/tpm/bin/install_plugins'
+
+# Final statusline overrides after plugin initialization.
+set -g status-interval 5
+set -g automatic-rename on
+set -g automatic-rename-format "#{b:pane_current_path}"
+
+# Pane borders: muted inactive border, clearer active border.
+set -g pane-border-style "fg=#51576d"
+set -g pane-active-border-style "fg=#8caaee"
+
+# Status bar colors and segment styling.
+set -g status-style "bg=#232634,fg=#c6d0f5"
+set -g message-style "bg=#ca9ee6,fg=#232634"
+set -g mode-style "bg=#f2d5cf,fg=#232634"
+
+# Session segment on the left.
+set -g status-left "#[fg=#232634,bg=#8caaee,bold] #S #[fg=#8caaee,bg=#303446,nobold]"
+
+# Window list styling in the center.
+set -g window-status-separator ""
+set -g window-status-format "#[fg=#a5adce,bg=#303446] #I:#W #[fg=#303446,bg=#232634]"
+set -g window-status-current-format "#[fg=#232634,bg=#ca9ee6,bold] #I:#W#{?window_zoomed_flag, [Z],} #[fg=#ca9ee6,bg=#232634,nobold]"
+
+# Git segment + clock on the right.
+set -g status-right '#[fg=#232634,bg=#81c8be] #(cd "#{pane_current_path}" 2>/dev/null && if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); if [ -n "$(git status --porcelain 2>/dev/null)" ]; then printf "  %s*" "$branch"; else printf "  %s" "$branch"; fi; else printf " no-git"; fi) #[fg=#81c8be,bg=#303446]#[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '

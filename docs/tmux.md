@@ -39,7 +39,7 @@ The tmux prefix key is `Ctrl+a`.
 | Resize pane                     | `Ctrl+a h/j/k/l`                                           |
 | Toggle pane zoom                | `Ctrl+a m`                                                 |
 | Clear screen + tmux history     | macOS: `Command+k`, non-macOS: `Ctrl+k`                   |
-| Reload tmux config              | `Ctrl+a r`                                                 |
+| Reload tmux config              | `Ctrl+a R`                                                 |
 | Show all key bindings           | `Ctrl+a ?`                                                 |
 
 Note: `Ctrl+k` clear is bound after plugin initialization in `tmux.conf` so it overrides plugin keybindings.
@@ -79,7 +79,12 @@ If you mean "keep my session so I can come back later today", tmux already does 
 
 Your session remains until tmux server exits (or you kill that session).
 
-If you mean "persist across reboot", use a session plugin like `tmux-resurrect` and `tmux-continuum`.
+If you mean "persist across reboot", this config uses `tmux-resurrect` + `tmux-continuum`.
+
+- Manual save: `Ctrl+a Ctrl-s`
+- Manual restore: `Ctrl+a Ctrl-r`
+- Auto-save: handled by `tmux-continuum`
+- Auto-restore on tmux start: enabled
 
 ## Cheat Sheet
 

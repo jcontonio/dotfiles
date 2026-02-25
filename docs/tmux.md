@@ -57,6 +57,14 @@ Fallback Neovim navigation remains available:
 
 For macOS terminals, configure `Command + Option + Arrow` to send `Control + Alt + Arrow` escape sequences to tmux.
 
+## Neovim Statusline in Tmux
+
+This setup uses `vim-tpipeline` when Neovim is running inside tmux.
+
+- It embeds the Neovim statusline into tmux.
+- It clears Neovim's own statusline to avoid stacked bottom bars.
+- It restores your normal tmux statusline when Neovim exits.
+
 ## Session Workflow Example
 
 ```zsh

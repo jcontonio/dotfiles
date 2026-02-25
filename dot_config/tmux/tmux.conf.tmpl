@@ -17,7 +17,7 @@ unbind '"'
 unbind %
 bind | split-window -h
 bind - split-window -v
-bind r source-file ~/.config/tmux/tmux.conf
+bind R source-file ~/.config/tmux/tmux.conf
 bind -r h resize-pane -L 5
 bind -r j resize-pane -D 5
 bind -r k resize-pane -U 5
@@ -46,12 +46,16 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'catppuccin/tmux'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # Theme defaults
 set -g @catppuccin_flavour 'frappe'
 set -g status-position bottom
 set -g status-left-length 60
 set -g status-right-length 120
+set -g @continuum-restore 'on'
+set -g @resurrect-capture-pane-contents 'on'
 
 # Bootstrap TPM automatically so chezmoi apply is enough.
 if-shell '[ ! -d ~/.config/tmux/plugins/tpm ]' \

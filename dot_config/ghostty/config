@@ -10,3 +10,6 @@ keybind = cmd+alt+left=csi:1;7D
 keybind = cmd+alt+right=csi:1;7C
 keybind = cmd+alt+up=csi:1;7A
 keybind = cmd+alt+down=csi:1;7B
+
+# Send Ctrl+K when pressing Cmd+K so tmux handles clear + clear-history.
+keybind = cmd+k=text:\x0b

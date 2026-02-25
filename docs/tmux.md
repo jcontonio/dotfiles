@@ -38,6 +38,7 @@ The tmux prefix key is `Ctrl+a`.
 | Move between panes (prefixless) | macOS: `Command+Option+Arrow`, non-macOS: `Ctrl+Alt+Arrow` |
 | Resize pane                     | `Ctrl+a h/j/k/l`                                           |
 | Toggle pane zoom                | `Ctrl+a m`                                                 |
+| Clear screen + tmux history     | macOS: `Command+k`, non-macOS: `Ctrl+k`                   |
 | Reload tmux config              | `Ctrl+a r`                                                 |
 | Show all key bindings           | `Ctrl+a ?`                                                 |
 

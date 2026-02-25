@@ -23,7 +23,6 @@ bind -r j resize-pane -D 5
 bind -r k resize-pane -U 5
 bind -r l resize-pane -R 5
 bind -r m resize-pane -Z
-bind -n C-k send-keys C-l \; clear-history
 
 # Navigation without prefix (shared bindings).
 # On macOS, configure your terminal to send C-M-Arrow for Cmd+Opt+Arrow.
@@ -66,6 +65,7 @@ run-shell '~/.config/tmux/plugins/tpm/bin/install_plugins'
 set -g status-interval 5
 set -g automatic-rename on
 set -g automatic-rename-format "#{b:pane_current_path}"
+bind -n C-k send-keys C-l \; clear-history
 
 # Pane borders: muted inactive border, clearer active border.
 set -g pane-border-style "fg=#51576d"

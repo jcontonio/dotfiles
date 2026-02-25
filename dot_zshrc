@@ -10,7 +10,6 @@ fi
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 PATH="$PATH:$HOME/.local/bin"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -134,8 +133,6 @@ nf() {
 cdf() {
   cd "$(fd . -t d | fzf)" || return
 }
-
-# source "/Users/jcontonio/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 eval "$(~/.local/bin/mise activate zsh)"
 eval "$(direnv hook zsh)"

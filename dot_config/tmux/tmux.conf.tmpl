@@ -1,12 +1,14 @@
 # Terminal and shell behavior
-set -g default-terminal "screen-256color"
+set -g default-terminal "tmux-256color"
 set-option -ga terminal-overrides ",xterm-256color:Tc"
 set-option -g default-shell /bin/zsh
 set-option -sg escape-time 0
 set -g focus-events on
 set -g xterm-keys on
 set -g extended-keys on
+set -g extended-keys-format csi-u
 set -as terminal-features ",tmux-256color:extkeys"
+set -as terminal-features ",xterm*:extkeys"
 
 # Prefix and indexing
 set -g prefix C-a

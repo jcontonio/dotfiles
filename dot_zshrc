@@ -77,12 +77,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Accept autosuggestion with Tab when available, otherwise run normal completion.
 tab-complete-or-accept() {
-  local before_buffer="${BUFFER}"
-  local before_cursor="${CURSOR}"
-
-  zle autosuggest-accept
-
-  if [[ "${BUFFER}" == "${before_buffer}" && "${CURSOR}" -eq "${before_cursor}" ]]; then
+  if [[ -n "${POSTDISPLAY:-}" ]]; then
+    zle autosuggest-accept
+  else
     zle expand-or-complete
   fi
 }

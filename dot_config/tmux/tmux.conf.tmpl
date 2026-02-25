@@ -77,7 +77,7 @@ set -g automatic-rename-format "#{b:pane_current_path}"
 
 # Pane borders: muted inactive border, clearer active border.
 set -g pane-border-style "fg=#51576d"
-set -g pane-active-border-style "fg=#8caaee"
+set -g pane-active-border-style "fg=#51576d"
 
 # Status bar colors and segment styling.
 set -g status-style "bg=#232634,fg=#c6d0f5"
@@ -93,4 +93,4 @@ set -g window-status-format "#[fg=#a5adce,bg=#303446] #I:#W #[fg=#303446,bg=#232
 set -g window-status-current-format "#[fg=#232634,bg=#ca9ee6,bold] #I:#W#{?window_zoomed_flag, [Z],} #[fg=#ca9ee6,bg=#232634,nobold]"
 
 # Git segment + clock on the right.
-set -g status-right '#[fg=#232634,bg=#81c8be] #(cd "#{pane_current_path}" 2>/dev/null && if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); if [ -n "$(git status --porcelain 2>/dev/null)" ]; then printf "  %s*" "$branch"; else printf "  %s" "$branch"; fi; else printf " no-git"; fi) #[fg=#81c8be,bg=#303446]#[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '
+set -g status-right '#[fg=#232634,bg=#81c8be] #(cd "#{pane_current_path}" 2>/dev/null && if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then branch=$(git symbolic-ref --short -q HEAD 2>/dev/null); if [ -z "$branch" ]; then branch="detached:$(git rev-parse --short HEAD 2>/dev/null)"; fi; if [ -n "$(git status --porcelain 2>/dev/null)" ]; then printf "  %s*" "$branch"; else printf "  %s" "$branch"; fi; else printf " no-git"; fi) #[fg=#81c8be,bg=#303446]#[fg=#c6d0f5,bg=#303446] %H:%M %d-%b-%y '

@@ -1,0 +1,52 @@
+# Fedora package manifest for ThinkPad P14s setup.
+# One package per line. Lines starting with # are ignored.
+
+# Core shell and editors
+bash
+curl
+direnv
+fd-find
+btop
+fzf
+git
+htop
+mise
+neovim
+ripgrep
+tmux
+wget
+zsh
+zsh-completions
+
+# Build and toolchain
+gcc
+cmake
+make
+pkg-config
+
+# CLI quality-of-life
+bat
+eza
+git-delta
+zoxide
+
+# Media, codecs, and acceleration
+ffmpeg-libs
+gstreamer1-plugin-openh264
+intel-media-driver
+libva
+libva-utils
+mesa-vulkan-drivers
+mozilla-openh264
+openh264
+
+# Archive support
+p7zip
+p7zip-plugins
+unrar
+unzip
+
+# Snapshot tooling and dnf hooks
+btrfs-assistant
+libdnf5-plugin-actions
+snapper

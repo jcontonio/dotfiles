@@ -4,13 +4,3 @@ macos-titlebar-style = transparent
 window-colorspace = "display-p3"
 window-padding-y = 0
 window-padding-x = 0
-
-# Send Ctrl+Alt+Arrow sequences when pressing Cmd+Opt+Arrow on macOS.
-# This matches tmux/neovim mappings for cross-pane navigation.
-keybind = cmd+alt+left=csi:1;7D
-keybind = cmd+alt+right=csi:1;7C
-keybind = cmd+alt+up=csi:1;7A
-keybind = cmd+alt+down=csi:1;7B
-
-# Send Ctrl+K when pressing Cmd+K so tmux handles clear + clear-history.
-keybind = super+k=text:\x0b

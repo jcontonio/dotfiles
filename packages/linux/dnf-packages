@@ -16,7 +16,7 @@ ripgrep
 tmux
 wget
 zsh
-zsh-completions
+zsh-autosuggestions
 
 # Build and toolchain
 gcc
@@ -27,7 +27,6 @@ pkg-config
 # CLI quality-of-life
 bat
 git-delta
-gitmux
 zoxide
 
 # Media, codecs, and acceleration

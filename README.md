@@ -50,7 +50,6 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 ```zsh
 sudo dnf config-manager addrepo --from-repofile=https://mise.jdx.dev/rpm/mise.repo
-sudo dnf copr enable -y agriffis/eza
 sudo dnf install -y --skip-unavailable $(awk '!/^[[:space:]]*(#|$)/ { print }' packages/linux/dnf-packages)
 
 # Install gitmux from GitHub

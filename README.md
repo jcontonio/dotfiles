@@ -49,7 +49,13 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 3. Install curated Fedora package set:
 
 ```zsh
-sudo dnf install -y $(awk "!/^[[:space:]]*(#|$)/ { print }" packages/linux/dnf-packages)
+sudo dnf config-manager addrepo --from-repofile=https://mise.jdx.dev/rpm/mise.repo
+sudo dnf copr enable -y agriffis/eza
+sudo dnf install -y --skip-unavailable $(awk '!/^[[:space:]]*(#|$)/ { print }' packages/linux/dnf-packages)
+
+# Install gitmux from GitHub
+GITMUX_VERSION=$(curl -s https://api.github.com/repos/arl/gitmux/releases/latest | grep tag_name | cut -d'"' -f4)
+curl -sL "https://github.com/arl/gitmux/releases/download/${GITMUX_VERSION}/gitmux_${GITMUX_VERSION}_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin gitmux
 ```
 
 ---

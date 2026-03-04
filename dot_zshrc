@@ -158,7 +158,7 @@ cdf() {
   cd "$(fd . -t d | fzf)" || return
 }
 
-eval "$(~/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 
 # Init zoxide

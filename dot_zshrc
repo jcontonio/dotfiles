@@ -75,28 +75,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Let Tab accept autosuggestions first, then fall back to normal completion.
-# Keep this widget out of autosuggestions' wrapper logic to avoid completion
-# side effects like inserting extra spaces.
-if (( ${+ZSH_AUTOSUGGEST_IGNORE_WIDGETS} )); then
-  ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(tab-complete-or-accept)
-fi
-tab-complete-or-accept() {
-  if (( $#POSTDISPLAY )); then
-    BUFFER="${BUFFER}${POSTDISPLAY}"
-    CURSOR=${#BUFFER}
-    POSTDISPLAY=
-    zle redisplay
-  else
-    zle expand-or-complete
-  fi
-}
-zle -N tab-complete-or-accept
-bindkey -M emacs '^I' tab-complete-or-accept
-bindkey -M viins '^I' tab-complete-or-accept
-if (( $+functions[_zsh_autosuggest_bind_widgets] )); then
-  _zsh_autosuggest_bind_widgets
-fi
 
 # User configuration
 

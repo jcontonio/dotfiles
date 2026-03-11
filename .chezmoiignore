@@ -1,19 +1,9 @@
 README.md
-iterm2/
+docs
+packages
+scripts
 .config/tmux/plugins/**
 
 {{- if eq .chezmoi.os "darwin" }}
-.config/cava/
-.config/dunst/
 .config/electon-flags.conf
-.config/hypr/
-.config/i3/
-.config/kitty/
-.config/moc/
-.config/mpDris2/
-{{ end }}
-
-{{- if eq .chezmoi.os "linux" }}
-.config/skhd/
-.config/yabai/
 {{ end }}

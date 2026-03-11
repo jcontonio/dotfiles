@@ -3,11 +3,13 @@
 
 # Core shell and editors
 bash
+chezmoi
 curl
 direnv
 fd-find
 btop
 fzf
+gh
 git
 htop
 mise
@@ -16,13 +18,21 @@ ripgrep
 tmux
 wget
 zsh
-zsh-autosuggestions
 
 # Build and toolchain
 gcc
 cmake
 make
 pkg-config
+bison
+flex
+readline-devel
+zlib-devel
+openssl-devel
+libuuid-devel
+perl-core
+e2fsprogs-devel
+lm_sensors
 
 # CLI quality-of-life
 bat

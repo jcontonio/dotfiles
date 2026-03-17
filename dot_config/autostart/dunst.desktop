@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Dunst
+Exec=dunst
+X-KDE-AutostartPhase=1
+X-KDE-StartupNotify=false
+NoDisplay=true

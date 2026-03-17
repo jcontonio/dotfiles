@@ -142,5 +142,10 @@ eval "$(direnv hook zsh)"
 # Init zoxide
 eval "$(zoxide init zsh)"
 
+fzn() {
+  local file
+  file=$(fd --type f | fzf --preview 'bat --color=always {}' --preview-window=up) && nvim "$file"
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

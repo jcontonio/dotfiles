@@ -1,0 +1,24 @@
+[user]
+  email = jay@conton.io
+  name = Jay Contonio
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[pull]
+  rebase = true
+
+[core]
+  editor = nvim
+[fetch]
+  prune = true
+{{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+[core]
+  sshCommand = ssh.exe
+{{ end }}
+
+[init]
+  defaultBranch = main

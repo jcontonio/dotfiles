@@ -1,0 +1,28 @@
+return {
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
+  opts = {
+    ensure_installed = {
+      "lua-language-server",
+      "cssmodules-language-server",
+      "prisma-language-server",
+      "docker-language-server",
+      "css-lsp",
+      "astro-language-server",
+      "gh-actions-language-server",
+      "yaml-language-server",
+      "html-lsp",
+      "stylua",
+      "bash-language-server",
+      "typescript-language-server",
+      "shfmt",
+      "postgres-language-server",
+      "tree-sitter-cli",
+      "markdown-oxide",
+      "eslint_d",
+      "prettierd",
+      "tailwindcss-language-server",
+      "json-lsp",
+      "css-variables-language-server",
+    },
+  },
+}

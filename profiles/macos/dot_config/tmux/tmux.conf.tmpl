@@ -1,0 +1,106 @@
+# Terminal and shell behavior
+if-shell 'infocmp -x tmux-256color >/dev/null 2>&1' \
+  'set -g default-terminal "tmux-256color"' \
+  'set -g default-terminal "screen-256color"'
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+set-option -g default-shell /bin/zsh
+set-option -sg escape-time 0
+set -g focus-events on
+set -g xterm-keys on
+set -g extended-keys always
+set -g extended-keys-format csi-u
+set -as terminal-features ",tmux-256color:extkeys"
+set -as terminal-features ",xterm*:extkeys"
+set -as terminal-features ",*:extkeys"
+
+# Prefix and indexing
+set -g prefix C-a
+unbind-key C-b
+bind-key C-a send-prefix
+set -g base-index 1
+set -g renumber-windows on
+bind , command-prompt -I "#W" "rename-window -- '%%'"
+
+# Pane and window operations
+unbind '"'
+unbind %
+bind | split-window -h
+bind - split-window -v
+bind R source-file ~/.config/tmux/tmux.conf
+bind -r h resize-pane -L 5
+bind -r j resize-pane -D 5
+bind -r k resize-pane -U 5
+bind -r l resize-pane -R 5
+bind -r m resize-pane -Z
+
+# Navigation without prefix (shared bindings).
+# On macOS, configure your terminal to send C-M-Arrow for Cmd+Opt+Arrow.
+bind -n C-M-Left select-pane -L
+bind -n C-M-Right select-pane -R
+bind -n C-M-Up select-pane -U
+bind -n C-M-Down select-pane -D
+
+# Mouse and copy mode
+set -g mouse on
+set-window-option -g mode-keys vi
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+unbind -T copy-mode-vi MouseDragEnd1Pane
+
+# Keep window names stable
+set-option -g allow-rename off
+
+# Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'catppuccin/tmux'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Theme defaults
+set -g @catppuccin_flavor 'frappe'
+# set -g @catppuccin_status_background "none"
+set -g status-position bottom
+# set -g status-style "bg=#303446,fg=#c6d0f5"
+set -g status-left-length 99
+set -g status-right-length 99
+set -g status-justify left
+set -g @continuum-restore 'on'
+set -g @resurrect-capture-pane-contents 'on'
+
+# Bootstrap TPM automatically so chezmoi apply is enough.
+if-shell '[ ! -d ~/.config/tmux/plugins/tpm ]' \
+  'run-shell "mkdir -p ~/.config/tmux/plugins && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm"'
+
+# Start TPM and install any missing plugins automatically.
+run '~/.config/tmux/plugins/tpm/tpm'
+run-shell '~/.config/tmux/plugins/tpm/bin/install_plugins'
+
+# Final statusline overrides after plugin initialization.
+# set -g status-style "bg=#303446,fg=#c6d0f5"
+# set -g status-bg "#303446"
+# set -g status-fg "#c6d0f5"
+set -g status-interval 5
+set -g automatic-rename on
+set -g automatic-rename-format "#{b:pane_current_path}"
+bind -n C-k send-keys C-l \; clear-history
+
+# Pane borders: muted inactive border, clearer active border.
+set -g pane-border-style "fg=#51576d"
+set -g pane-active-border-style "fg=#51576d"
+
+# Status bar colors and segment styling.
+# set -g message-style "bg=#303446,fg=#ca9ee6"
+# set -g mode-style "bg=#303446,fg=#f2d5cf"
+
+# Session segment on the left.
+# set -g status-left "#[fg=#8caaee,bg=#303446,bold] #S "
+
+# Window list styling in the center.
+set -g window-status-separator ""
+# set -g window-status-format "#[fg=#949cbb,bg=#303446] #I:#W "
+# set -g window-status-current-format "#[fg=#ca9ee6,bg=#303446,bold] #I:#W#{?window_zoomed_flag, [Z],} "
+
+# Git segment + clock on the right (via gitmux).
+set -g status-right '#(if command -v gitmux >/dev/null 2>&1; then gitmux -cfg ~/.config/gitmux/gitmux.conf "#{pane_current_path}"; else printf " no-gitmux"; fi) %H:%M %d-%b-%y '

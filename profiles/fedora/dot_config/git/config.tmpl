@@ -5,11 +5,6 @@
 [gpg]
   format = ssh
 
-{{ if eq .chezmoi.os "darwin" }}
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-{{ end }}
-
 [commit]
   gpgsign = true
 
@@ -20,11 +15,9 @@
   editor = nvim
 [fetch]
   prune = true
-{{ if eq .chezmoi.os "linux" }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 [core]
   sshCommand = ssh.exe
-{{   end }}
 {{ end }}
 
 [init]

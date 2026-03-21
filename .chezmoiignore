@@ -1,9 +1,3 @@
 README.md
-docs
-packages
-scripts
-.config/tmux/plugins/**
-
-{{- if eq .chezmoi.os "darwin" }}
-.config/electon-flags.conf
-{{ end }}
+docs/
+profiles/

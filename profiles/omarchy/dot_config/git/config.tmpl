@@ -1,9 +1,13 @@
 [user]
   email = jay@conton.io
   name = Jay Contonio
+  signingkey = {{ onepasswordRead "op://Personal/hgn3kfyicofid75n65mvxh7p2y/public key" }}
 
 [gpg]
   format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
 
 [commit]
   gpgsign = true

@@ -5,8 +5,6 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/), organized int
 - [Repo Structure](#repo-structure)
 - [Getting Started](#getting-started)
   - [1. Install chezmoi](#1-install-chezmoi)
-  - [2. Clone this repo](#2-clone-this-repo)
-  - [3. Run the profile script](#3-run-the-profile-script)
 - [Profile Setup](#profile-setup)
   - [Omarchy (Arch)](#omarchy-arch)
   - [Fedora (DNF)](#fedora-dnf)
@@ -22,7 +20,6 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/), organized int
 profiles/
   omarchy/          # Arch-based Omarchy profile
     dot_config/
-    dot_zshrc
     packages/
       pacman-packages
       aur-packages
@@ -41,10 +38,7 @@ profiles/
     dot_zshrc
     packages/
       Brewfile
-shared/             # Config shared across all profiles
 docs/
-scripts/
-  use-profile.sh    # Profile init/switch script
 README.md
 ```
 
@@ -52,45 +46,15 @@ README.md
 
 ## Getting Started
 
-### 1. Install chezmoi
-
-**Omarchy / Arch:**
-```bash
-sudo pacman -S chezmoi
+1. Install chezmoi
+2. Init Chezmoi (without applying!)
+  ```bash
+  chezmoi --init git@github.com:$GITHUB_USERNAME
+  ```
+3. Create a `.chezmoiroot` file pointing to your profile
+  ```sh
+  profiles/fedora
 ```
-
-**Fedora:**
-```bash
-sudo dnf install chezmoi
-```
-
-**macOS:**
-```bash
-brew install chezmoi
-```
-
-### 2. Clone this repo
-
-Clone to any location you prefer:
-
-```bash
-git clone <your-repo-url> ~/path/to/dotfiles
-```
-
-### 3. Run the profile script
-
-```bash
-cd ~/path/to/dotfiles
-chmod +x scripts/use-profile.sh
-./scripts/use-profile.sh
-```
-
-The script will:
-- Show available profiles and prompt you to select one
-- Initialize chezmoi, pointing it at the selected profile subdirectory
-- Offer to run `chezmoi diff` or `chezmoi apply` immediately
-
-Run `chezmoi diff` first to preview what will change before applying.
 
 ---
 
@@ -162,7 +126,7 @@ chezmoi diff            # preview pending changes
 chezmoi apply           # apply source to home directory
 ```
 
-To switch profiles (e.g. moving to a new machine), just run `scripts/use-profile.sh` again.
+To switch profiles (e.g. moving to a new machine), just change the root `.chezmoiroot` file.
 
 ---
 

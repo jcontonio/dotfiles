@@ -4,8 +4,5 @@ dot_config/tmux/plugins/
 **/*/cache
 **/*/pid
 
-# MOC
-dot_config/moc/last_directory
-
-# NCMPCPP
-dot_config/ncmpcpp/error.log
+# Ignore the .chezmoiroot so it's system specific
+.chezmoiroot

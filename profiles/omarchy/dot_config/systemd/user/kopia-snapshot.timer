@@ -1,0 +1,10 @@
+[Unit]
+Description=Kopia Backup Timer
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+Unit=kopia-snapshot.service
+
+[Install]
+WantedBy=timers.target

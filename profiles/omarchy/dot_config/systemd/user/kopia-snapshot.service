@@ -1,0 +1,7 @@
+[Unit]
+Description=Kopia snapshot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=kopia snapshot create /home/jcontonio

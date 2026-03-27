@@ -37,5 +37,3 @@ mouse-scroll-multiplier = 0.95
 async-backend = epoll
 
 # Jay cutomized from here down
-shell-integration = fish
-command = /usr/bin/fish

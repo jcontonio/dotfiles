@@ -1,5 +1,5 @@
 [Unit]
-Description=Kopia Backup Timer
+Description=Kopia Daily B2 snapshot
 
 [Timer]
 OnCalendar=hourly

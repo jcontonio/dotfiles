@@ -1,0 +1,6 @@
+[Unit]
+Description=Kopia snapshot → external drive
+ConditionPathIsMountPoint=/run/media/jcontonio/Backup/kopia-repo
+
+[Service]
+ExecStart=kopia --config-file=%h/.config/kopia/local.config snapshot create %h

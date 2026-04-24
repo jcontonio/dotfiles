@@ -12,53 +12,48 @@
 }
 
 .modules-left {
-  margin-left: 8px;
+  margin-left: 12px;
 }
 
 .modules-right {
-  margin-right: 8px;
+  margin-right: 12px;
 }
 
+/** Workspaces on the left */
+#workspaces {
+  margin: 0 8px;
+}
 #workspaces button {
   all: initial;
-  padding: 0 6px;
-  margin: 0 1.5px;
-  min-width: 9px;
+  padding: 0 8px;
 }
-
 #workspaces button.empty {
   opacity: 0.5;
 }
 
-#cpu,
-#battery,
-#pulseaudio,
-#custom-omarchy,
-#custom-update {
+/* Expanding tray */
+#custom-expand-icon {
+  margin-right: 12px;
   min-width: 12px;
-  margin: 0 7.5px;
+}
+#tray {
+  margin-right: 12px;
 }
 
-#tray {
+#bluetooth,
+#network,
+#pulseaudio,
+#cpu,
+#custom-power-profile,
+#battery {
+  min-width: 12px;
   margin-right: 16px;
 }
-
-#custom-power-profile {
-  min-width: 12px;
-  margin: 0;
-  padding: 0;
-}
-
-#bluetooth {
-  margin-right: 17px;
-}
-
-#network {
-  margin-right: 13px;
-}
-
-#custom-expand-icon {
+#battery {
   margin-right: 0;
+}
+#bluetooth {
+  margin-right: 11px;
 }
 
 tooltip {
@@ -70,7 +65,7 @@ tooltip {
 }
 
 #clock {
-  margin-left: 8.75px;
+  /* margin-left: 8.75px; */
 }
 
 .hidden {

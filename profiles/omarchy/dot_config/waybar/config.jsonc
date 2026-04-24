@@ -8,6 +8,7 @@
   "modules-center": ["clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator", "custom/kew"],
   "modules-right": [
     "group/tray-expander",
+    "custom/power-profile",
     "bluetooth",
     "network",
     "pulseaudio",
@@ -65,6 +66,13 @@
     "format": "󰍛",
     "on-click": "omarchy-launch-or-focus-tui btop",
     "on-click-right": "alacritty"
+  },
+  "custom/power-profile": {
+    "exec": "~/.config/waybar/scripts/power-profile.sh",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 11,
+    "on-click": "omarchy-menu power"
   },
   "clock": {
     "format": "{:L%A %H:%M}",

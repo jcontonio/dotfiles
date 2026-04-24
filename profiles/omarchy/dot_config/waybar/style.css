@@ -43,6 +43,12 @@
   margin-right: 16px;
 }
 
+#custom-power-profile {
+  min-width: 12px;
+  margin: 0;
+  padding: 0;
+}
+
 #bluetooth {
   margin-right: 17px;
 }
@@ -52,7 +58,7 @@
 }
 
 #custom-expand-icon {
-  margin-right: 18px;
+  margin-right: 0;
 }
 
 tooltip {

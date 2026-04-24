@@ -1,0 +1,12 @@
+[Unit]
+Description=Watch power profile changes and signal waybar
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.config/waybar/scripts/power-profile-watch.sh
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

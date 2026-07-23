@@ -1,0 +1,207 @@
+#!/usr/bin/env bash
+#
+# wt - create a git worktree for a PR or branch, fully set up and ready to run.
+#
+# Usage:
+#   wt 720                  # resolve PR #720's branch via gh, create ../PR-720
+#   wt some/branch          # use the branch as-is, create ../some-branch
+#   wt some/branch my-dir   # use the branch, create ../my-dir
+#
+#   -p, --print-path        # print only the worktree path on stdout, progress
+#                           # on stderr, so a shell wrapper can cd into it:
+#                           #   wt() { local d; d=$(command wt -p "$@") && cd "$d"; }
+#
+# Must be run from inside the repo (the main checkout or any existing worktree).
+# New worktrees are created as siblings of the main checkout.
+
+set -euo pipefail
+
+die() {
+  printf '\033[31merror:\033[0m %s\n' "$1" >&2
+  exit 1
+}
+
+step() {
+  printf '\033[36m==>\033[0m %s\n' "$1"
+}
+
+warn() {
+  printf '\033[33mwarn:\033[0m %s\n' "$1" >&2
+}
+
+usage() {
+  sed -n '3,15p' "$0" | sed 's/^# \{0,1\}//' >&2
+  exit "${1:-0}"
+}
+
+print_path=false
+args=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h | --help) usage 0 ;;
+    -p | --print-path)
+      print_path=true
+      shift
+      ;;
+    --)
+      shift
+      args+=("$@")
+      break
+      ;;
+    -*) die "unknown option: $1" ;;
+    *)
+      args+=("$1")
+      shift
+      ;;
+  esac
+done
+
+[[ ${#args[@]} -ge 1 ]] || usage 1
+[[ ${#args[@]} -le 2 ]] || die "expected at most 2 arguments, got ${#args[@]}"
+
+target="${args[0]}"
+dir_override="${args[1]:-}"
+
+# fd 3 carries the one thing a caller may want to capture: the worktree path.
+# With --print-path everything else is pushed to stderr so `$(wt -p ...)` is
+# exactly the path and progress still shows up in the terminal.
+if [[ "$print_path" == true ]]; then
+  exec 3>&1 1>&2
+else
+  exec 3>&1
+fi
+
+# Prints the worktree path for capture, plus a cd hint in interactive mode.
+finish() {
+  if [[ "$print_path" == true ]]; then
+    printf '%s\n' "$1" >&3
+  else
+    printf '\n  cd %s\n\n' "$1" >&3
+  fi
+  exit 0
+}
+
+command -v git >/dev/null || die "git not found on PATH"
+git rev-parse --git-dir >/dev/null 2>&1 || die "not inside a git repository"
+
+# The first entry of `git worktree list` is always the main checkout. That is
+# where the untracked .env lives, and new worktrees go beside it.
+main_root=$(git worktree list --porcelain | sed -n '1s/^worktree //p')
+[[ -n "$main_root" && -d "$main_root" ]] || die "could not locate the main worktree"
+parent_dir=$(dirname "$main_root")
+
+# ---------------------------------------------------------------------------
+# Resolve the branch to check out
+# ---------------------------------------------------------------------------
+
+is_fork=false
+pr_number=""
+
+if [[ "$target" =~ ^[0-9]+$ ]]; then
+  pr_number="$target"
+  command -v gh >/dev/null || die "gh not found on PATH; pass a branch name instead of a PR number"
+
+  step "Looking up PR #${pr_number}"
+  # Tab-separated so a title containing spaces stays in one field.
+  pr_info=$(gh pr view "$pr_number" \
+    --json headRefName,isCrossRepository,state,title \
+    --jq '[.headRefName, .isCrossRepository, .state, .title] | @tsv' 2>/dev/null) \
+    || die "could not read PR #${pr_number} (does it exist in this repo?)"
+
+  IFS=$'\t' read -r branch is_cross pr_state pr_title <<<"$pr_info"
+  [[ -n "$branch" ]] || die "PR #${pr_number} returned no head branch"
+
+  if [[ "$is_cross" == "true" ]]; then
+    is_fork=true
+  fi
+  if [[ "$pr_state" != "OPEN" ]]; then
+    warn "PR #${pr_number} is ${pr_state}"
+  fi
+
+  printf '    %s\n    branch: %s\n' "$pr_title" "$branch"
+  worktree_dir="${dir_override:-PR-${pr_number}}"
+else
+  branch="$target"
+  # Branch names contain slashes; directory names should not.
+  worktree_dir="${dir_override:-${branch//\//-}}"
+fi
+
+worktree_path="${parent_dir}/${worktree_dir}"
+
+# ---------------------------------------------------------------------------
+# Bail out early if the destination is already taken
+# ---------------------------------------------------------------------------
+
+if git worktree list --porcelain | grep -qxF "worktree ${worktree_path}"; then
+  step "Worktree already exists"
+  finish "$worktree_path"
+fi
+
+if [[ -e "$worktree_path" ]]; then
+  die "${worktree_path} already exists but is not a registered worktree"
+fi
+
+existing=$(git worktree list --porcelain \
+  | grep -B2 -xF "branch refs/heads/${branch}" \
+  | grep '^worktree ' | cut -d' ' -f2- || true)
+if [[ -n "$existing" ]]; then
+  die "branch '${branch}' is already checked out at ${existing}"
+fi
+
+# ---------------------------------------------------------------------------
+# Fetch and create the worktree
+# ---------------------------------------------------------------------------
+
+if [[ "$is_fork" == true ]]; then
+  # Fork branches do not exist on origin, so pull the PR head ref directly.
+  # The resulting local branch has no upstream: you cannot push back to it.
+  warn "PR #${pr_number} comes from a fork; the local branch will not be pushable"
+  local_branch="pr-${pr_number}"
+  step "Fetching pull/${pr_number}/head"
+  git -C "$main_root" fetch origin "pull/${pr_number}/head:${local_branch}" --force
+  step "Creating worktree at ${worktree_path}"
+  git -C "$main_root" worktree add "$worktree_path" "$local_branch"
+else
+  step "Fetching origin/${branch}"
+  git -C "$main_root" fetch origin "$branch"
+
+  step "Creating worktree at ${worktree_path}"
+  if git -C "$main_root" show-ref --verify --quiet "refs/heads/${branch}"; then
+    git -C "$main_root" worktree add "$worktree_path" "$branch"
+  else
+    git -C "$main_root" worktree add --track -b "$branch" "$worktree_path" "origin/${branch}"
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# Set the worktree up
+# ---------------------------------------------------------------------------
+
+if command -v mise >/dev/null; then
+  step "Trusting mise config"
+  (cd "$worktree_path" && mise trust >/dev/null)
+else
+  warn "mise not found on PATH; skipping 'mise trust'"
+fi
+
+if [[ -f "${main_root}/.env" ]]; then
+  step "Copying .env from ${main_root}"
+  cp "${main_root}/.env" "${worktree_path}/.env"
+else
+  warn "no .env in ${main_root}; skipping copy and sync-env"
+fi
+
+if [[ -f "${worktree_path}/.env" ]]; then
+  step "Running sync-env"
+  (cd "$worktree_path" && mise x -- pnpm sync-env)
+fi
+
+# .envrc is tracked, so direnv blocks the new directory until it is allowed.
+if command -v direnv >/dev/null && [[ -f "${worktree_path}/.envrc" ]]; then
+  step "Allowing direnv"
+  (cd "$worktree_path" && direnv allow)
+fi
+
+printf '\033[32mdone\033[0m\n'
+finish "$worktree_path"

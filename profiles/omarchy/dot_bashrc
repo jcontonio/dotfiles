@@ -15,6 +15,8 @@ alias gf='git fetch'
 alias gpl='git pull'
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
+wt() { local d; d=$(command wt -p "$@") && cd "$d"; }
+
 fzn() {
   local file
   file=$(fzf --preview 'bat --color=always {}' --preview-window=up) && nvim "$file"

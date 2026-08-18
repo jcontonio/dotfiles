@@ -7,6 +7,7 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/), organized int
   - [1. Install chezmoi](#1-install-chezmoi)
 - [Profile Setup](#profile-setup)
   - [Omarchy (Arch)](#omarchy-arch)
+    - [Laptop vs. Desktop](#laptop-vs-desktop)
   - [Fedora (DNF)](#fedora-dnf)
   - [macOS (Homebrew)](#macos-homebrew)
 - [Daily chezmoi Workflow](#daily-chezmoi-workflow)
@@ -18,8 +19,15 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/), organized int
 
 ```
 profiles/
-  omarchy/          # Arch-based Omarchy profile
+  omarchy/            # Arch-based Omarchy profile (laptop)
     dot_config/
+    dot_local/
+    dot_bashrc
+    packages/
+      pacman-packages
+      aur-packages
+    system/
+  omarchy-desktop/    # Arch-based Omarchy profile (desktop)
     packages/
       pacman-packages
       aur-packages
@@ -66,6 +74,23 @@ Install packages with pacman and your AUR helper of choice:
 
 ```bash
 sudo pacman -S --needed - < profiles/omarchy/packages/pacman-packages
+```
+
+#### Laptop vs. Desktop
+
+There are two Omarchy profiles so machine-specific config never mixes:
+
+| Profile | `.chezmoiroot` | Machine |
+| --- | --- | --- |
+| `profiles/omarchy` | `profiles/omarchy` | Laptop (internal panel, fingerprint reader, portable external display) |
+| `profiles/omarchy-desktop` | `profiles/omarchy-desktop` | Desktop |
+
+`profiles/omarchy-desktop` starts empty by design. Nothing is inherited from the laptop
+profile: set the root, then `chezmoi add` each file you want tracked on the desktop.
+
+```bash
+chezmoi add ~/.config/hypr/monitors.lua
+chezmoi add ~/.bashrc
 ```
 
 ### Fedora (DNF)

@@ -23,6 +23,22 @@
 -- Disable a default binding without replacing it.
 -- hl.unbind("SUPER + SHIFT + B")
 
+-- Remove the HEY web app bindings (not used).
+hl.unbind("SUPER + SHIFT + E")       -- was: Email (https://app.hey.com)
+hl.unbind("SUPER + SHIFT + ALT + E") -- was: New email (https://app.hey.com)
+hl.unbind("SUPER + SHIFT + C")       -- was: Calendar (https://app.hey.com/calendar)
+
+-- Remove the remaining default web app bindings (not used).
+hl.unbind("SUPER + SHIFT + A")        -- was: ChatGPT
+hl.unbind("SUPER + SHIFT + ALT + A")  -- was: Grok
+hl.unbind("SUPER + SHIFT + Y")        -- was: YouTube
+hl.unbind("SUPER + SHIFT + ALT + G")  -- was: WhatsApp
+hl.unbind("SUPER + SHIFT + CTRL + G") -- was: Google Messages
+hl.unbind("SUPER + SHIFT + P")        -- was: Google Photos
+hl.unbind("SUPER + SHIFT + S")        -- was: Google Maps
+hl.unbind("SUPER + SHIFT + X")        -- was: X
+hl.unbind("SUPER + SHIFT + ALT + X")  -- was: X Post
+
 -- Logitech MX Keys examples:
 -- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
 -- o.bind("SUPER + H", nil, "voxtype record toggle")

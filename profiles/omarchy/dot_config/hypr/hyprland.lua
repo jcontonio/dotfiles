@@ -29,3 +29,9 @@ require("default.hypr.toggles")
 
 -- Add any other personal Hyprland configuration below.
 -- o.window("qemu", { workspace = "5" })
+
+-- Save screen recordings in ~/Videos/Screencasts instead of ~/Videos.
+hl.env("OMARCHY_SCREENRECORD_DIR", os.getenv("HOME") .. "/Videos/Screencasts")
+
+-- Save screenshots in ~/Pictures/Screenshots instead of ~/Pictures.
+hl.env("OMARCHY_SCREENSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots")

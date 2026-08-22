@@ -3,6 +3,7 @@ input=$(cat)
 
 # Catppuccin Mocha 24-bit colors
 CLR_BLUE='\033[38;2;137;180;250m'    # #89b4fa  git branch
+CLR_MAUVE='\033[38;2;203;166;247m'   # #cba6f7  profile
 CLR_FG='\033[38;2;205;214;244m'      # #cdd6f4  model name, usage value
 CLR_SUBTEXT='\033[38;2;186;194;222m' # #bac2de  CTX: and Usage: labels
 CLR_GREEN='\033[38;2;166;227;161m'   # #a6e3a1  ctx < 75%
@@ -12,6 +13,14 @@ CLR_RESET='\033[0m'
 
 # Git branch (skip optional locks)
 branch=$(GIT_OPTIONAL_LOCKS=0 git -C "$(echo "$input" | jq -r '.workspace.current_dir')" rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+# Profile, derived from CLAUDE_CONFIG_DIR (e.g. claude-work aliases to
+# CLAUDE_CONFIG_DIR=~/.claude-work). Unset/~/.claude means "default".
+profile_dir_name=$(basename "${CLAUDE_CONFIG_DIR:-$HOME/.claude}")
+profile=${profile_dir_name#.}
+profile=${profile#claude}
+profile=${profile#-}
+[ -z "$profile" ] && profile="default"
 
 # Model display name
 model=$(echo "$input" | jq -r '.model.display_name // empty')
@@ -24,11 +33,13 @@ five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empt
 
 # Line 1: git branch
 if [ -n "$branch" ]; then
-  printf "${CLR_BLUE}\ue0a0 %s${CLR_RESET}\n" "$branch"
+  printf "${CLR_BLUE} %s${CLR_RESET}\n" "$branch"
 fi
 
-# Line 2: model  CTX: X%  Usage: X%
+# Line 2: [profile]  model  CTX: X%  Usage: X%
 line2_parts=()
+
+line2_parts+=("$(printf "${CLR_MAUVE}[%s]${CLR_RESET}" "$profile")")
 
 [ -n "$model" ] && line2_parts+=("$(printf "${CLR_FG}%s${CLR_RESET}" "$model")")
 

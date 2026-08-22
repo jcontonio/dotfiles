@@ -28,9 +28,16 @@ profiles/
       aur-packages
     system/
   omarchy-desktop/    # Arch-based Omarchy profile (desktop)
+    dot_config/
+      anker/            # Anker PowerConf C200 camera settings script
     packages/
       pacman-packages
       aur-packages
+    system/             # root-owned files, installed via system/install.sh
+      99-anker-c200.rules
+      anker-c200.service
+      install.sh
+      README.md
   fedora/           # Fedora profile
     dot_config/
     dot_zshrc
@@ -160,3 +167,5 @@ To switch profiles (e.g. moving to a new machine), just change the root `.chezmo
 1. [Shell Setup](./docs/shell.md)
 2. [tmux Setup](./docs/tmux.md)
 3. [Setup and Tips for macOS](./docs/macos.md)
+4. [NAS Access & Backups](./docs/nas-backups.md)
+5. [Anker PowerConf C200 Camera](./profiles/omarchy-desktop/system/README.md) (desktop only)

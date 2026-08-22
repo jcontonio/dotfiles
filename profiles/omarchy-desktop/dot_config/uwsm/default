@@ -1,0 +1,10 @@
+# Changes require a restart to take effect.
+# Sourced by /usr/share/uwsm/env.d/10-omarchy, so these land in the systemd
+# user environment and are inherited by the Omarchy shell (quickshell) too --
+# not just by processes Hyprland spawns directly.
+
+# Use a custom directory for screenshots (remember to make the directory!)
+export OMARCHY_SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
+
+# Use a custom directory for screenrecordings (remember to make the directory!)
+export OMARCHY_SCREENRECORD_DIR="$HOME/Videos/Screencasts"

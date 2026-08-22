@@ -1,0 +1,8 @@
+[Unit]
+Description=Apply Anker PowerConf C200 settings
+
+[Service]
+Type=oneshot
+# The camera needs a moment after enumeration before it accepts control writes.
+ExecStartPre=/bin/sleep 2
+ExecStart=__SCRIPT__

@@ -1,117 +1,77 @@
--- Change the default Omarchy look'n'feel.
+-- Personal overrides on top of Omarchy's defaults.
+--
+-- Window rules are evaluated top to bottom and the LAST match wins, so the
+-- order of everything below is load-bearing. Omarchy's own rules
+-- (/usr/share/omarchy/default/hypr/apps/*.lua) all run before this file.
 
--- 1. every new window opens floating at your size
--- hl.window_rule({
---  match = { class = ".*" },
---  float = true,
---  size = "1325 1000",
---  center = true,
--- })
-
--- 2. sizes you set by hand stick for the session
+-- 1. Float every window by default, and remember sizes set by hand.
+--
+--    persistent_size only restores a size when a new window has the same
+--    class AND title as the one that was resized. That works for apps with a
+--    stable title, but never for browsers -- their title is the page title,
+--    so every window is a "new" one and it opens at whatever size the app
+--    asks for. Those apps need an explicit size rule instead (section 2).
 hl.window_rule({
-	float = true,
 	match = { class = ".*" },
+	float = true,
 	persistent_size = true,
 })
 
--- 2b. Omarchy's default "floating-window" tag hardcodes size=875x600 for
--- 1Password (apps/1password.lua + apps/system.lua). That fixed size rule
--- always overwrites persistent_size on every open, so clear it here to let
--- persistent_size actually control 1Password's size. Must also match on
--- tag = "floating-window" (not just class) so this rule gets re-applied in
--- the same recheck pass that reapplies Omarchy's tag-matched size rule --
--- otherwise Omarchy's rule wins the race and this override is silently lost.
+-- 2. Explicit open sizes for apps persistent_size can't help.
+
+-- Chromium: also overrides Omarchy's tile = true for chromium-based browsers.
+hl.window_rule({
+	match = { tag = "chromium-based-browser" },
+	float = true,
+	size = { 1850, 1400 },
+	center = true,
+})
+
+-- Firefox: without this it opens at whatever geometry it saved in its own
+-- session store, which is where the squashed window after a reboot came from.
+hl.window_rule({
+	match = { tag = "firefox-based-browser" },
+	size = { 1850, 1400 },
+	center = true,
+})
+
+hl.window_rule({
+	match = { class = "^steam$", title = "^Steam$" },
+	size = { 1600, 1000 },
+	center = true,
+})
+
+-- 3. Restore Omarchy's picture-in-picture geometry. PiP windows are chromium
+--    windows, so the browser rules above match them too and would blow their
+--    size up to a full browser window.
+hl.window_rule({
+	match = { tag = "pip" },
+	size = { 600, 338 },
+	move = { "(monitor_w-window_w-40)", "(monitor_h*0.04)" },
+})
+
+-- Google Meet's PiP is titled with the meeting name rather than
+-- "Picture-in-Picture", so Omarchy matches it separately -- and so must this.
+hl.window_rule({
+	match = { tag = "chromium-based-browser", title = "^Meet - .+" },
+	size = { 600, 338 },
+	move = { "(monitor_w-window_w-40)", "(monitor_h-window_h-40)" },
+})
+
+-- 4. Omarchy's "floating-window" tag hardcodes size 875x600 (see
+--    default/hypr/apps/system.lua), which overwrites persistent_size on every
+--    1Password open. Clearing the size lets persistent_size take over. This
+--    must also match on tag = "floating-window", not just class, so it is
+--    re-applied in the same recheck pass as Omarchy's tag-matched size rule --
+--    otherwise Omarchy's rule wins the race and this override is lost.
 hl.window_rule({
 	match = { tag = "floating-window", class = "^1[pP]assword$" },
 	size = "",
 })
 
--- open Steam's main window at a fixed size (already floats via rule above)
-hl.window_rule({
-	match = { class = "^steam$", title = "^Steam$" },
-	size = "1600 1000",
-	center = true,
-})
-
--- 3. make all default floating windows taller (1Password, etc)
--- hl.window_rule({
--- match = { tag = "floating-window" },
--- size = "1325 1000",
--- })
-
--- 4. make sure chrome opens floating (overrides Omarchy's default tile=true for browsers)
-hl.window_rule({
-	match = { tag = "chromium-based-browser" },
-	float = true,
-})
-
--- 4b. force workspace 1 to tiled mode, overriding all the float rules above
--- (rules are evaluated top to bottom and the last match wins, so this must
--- stay below every other float=true rule to take precedence on workspace 1)
+-- 5. Workspace 1 stays tiled. Keep this below every float rule above so it
+--    takes precedence there.
 hl.window_rule({
 	match = { workspace = "1" },
 	tile = true,
 })
--- hl.window_rule({
---  match = { tag = "chromium-based-browser" },
---  float = true,
---  size = "1325 1000",
---  center = true,
---})
-
--- 5. 1Password tiny frekaing window (covers the small SSH-auth popup too)
--- hl.window_rule({
---  match = { class = "^1[pP]assword$" },
---  no_max_size = true,
---  min_size = "1200 800",
--- })
---
--- https://wiki.hypr.land/Configuring/Basics/Variables/#general
--- hl.config({
---   general = {
---     -- No gaps between windows or borders.
---     gaps_in = 0,
---     gaps_out = 0,
---     border_size = 0,
---
---     -- Change to niri-like side-scrolling layout.
---     layout = "scrolling",
---   },
--- })
-
--- https://wiki.hypr.land/Configuring/Basics/Variables/#decoration
--- hl.config({
---   decoration = {
---     -- Use round window corners.
---     rounding = 8,
---
---     -- Dim unfocused windows (0.0 = no dim, 1.0 = fully dimmed).
---     dim_inactive = true,
---     dim_strength = 0.15,
---   },
--- })
-
--- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
--- hl.config({
---   animations = {
---     -- Disable all animations.
---     enabled = false,
---   },
--- })
-
--- https://wiki.hypr.land/Configuring/Basics/Variables/#layout
--- hl.config({
---   layout = {
---     -- Avoid overly wide single-window layouts on wide screens.
---     single_window_aspect_ratio = { 1, 1 },
---   },
--- })
-
--- https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/
--- hl.config({
---   scrolling = {
---     -- See only one column per screen instead of two.
---     column_width = 0.97,
---   },
--- })

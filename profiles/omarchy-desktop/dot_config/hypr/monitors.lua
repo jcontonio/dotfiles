@@ -2,7 +2,7 @@
 -- List current monitors and supported resolutions with: hyprctl monitors all
 
 local omarchy_gdk_scale = 1
-local omarchy_monitor_scale = 1
+local omarchy_monitor_scale = 1.25
 
 hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
 -- bitdepth = 10 enables the 10-bit signal HDR needs. cm stays pinned to

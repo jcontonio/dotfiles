@@ -33,3 +33,23 @@ hl.env("OMARCHY_SCREENRECORD_DIR", os.getenv("HOME") .. "/Videos/Screencasts")
 
 -- Save screenshots in ~/Pictures/Screenshots instead of ~/Pictures.
 hl.env("OMARCHY_SCREENSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots")
+
+-- World of Warcraft: always fullscreen, ignore the game's requests to leave
+-- fullscreen, keep it fully opaque, and don't let the screen idle while playing.
+o.window({ title = "^World of Warcraft$" }, {
+  fullscreen = true,
+  suppress_event = "fullscreen maximize",
+  tag = "-default-opacity",
+  opacity = "1 1",
+  idle_inhibit = "fullscreen",
+})
+
+-- Tag games so SUPER+W won't close them (see hypr/bindings.lua). Covers
+-- Proton/Steam games (incl. Battle.net + WoW) and anything run in gamescope.
+o.window("^(steam_app_.*|gamescope)$", { tag = "+game" })
+o.window({ title = "^World of Warcraft$" }, { tag = "+game" })
+
+-- Personal Ghostty has its own class (so link-router can spot it), which the
+-- default terminal rule doesn't match. Tag it so terminal bindings and theme
+-- rules still apply.
+o.window("com.mitchellh.ghostty-personal", { tag = "+terminal" })

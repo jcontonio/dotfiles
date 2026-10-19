@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Route links to Firefox (personal) or the default browser (work, Chromium).
+#
+# A link is personal when:
+#   - BROWSER_PROFILE=personal is set (claude-personal, shells in Personal Ghostty)
+#   - the URL is under github.com/jcontonio or github.com/GETSET-FM
+#   - the focused window is Fastmail or Personal Ghostty (a clicked link)
+#
+# Everything else goes to omarchy-launch-browser, so Omarchy's handoff and
+# focus behaviour for the default browser stays intact.
+
+personal_classes="com.fastmail.Fastmail|com.mitchellh.ghostty-personal"
+personal_github="jcontonio|GETSET-FM"
+
+url=""
+for argument in "$@"; do
+  if [[ $argument != -* ]]; then
+    url=$argument
+    break
+  fi
+done
+
+personal=false
+shopt -s nocasematch
+if [[ ${BROWSER_PROFILE:-} == personal ]]; then
+  personal=true
+elif [[ $url =~ ^(https?://)?(www\.)?github\.com/($personal_github)([/?#]|$) ]]; then
+  personal=true
+elif [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]]; then
+  class=$(hyprctl activewindow 2>/dev/null | sed -n 's/^[[:space:]]*class: //p')
+  [[ $class =~ ^($personal_classes)$ ]] && personal=true
+fi
+shopt -u nocasematch
+
+if ! $personal; then
+  exec omarchy-launch-browser "$@"
+fi
+
+systemd-run --user --quiet --collect --unit="firefox-link-$(date +%s%N)" \
+  --property=StandardOutput=null --property=StandardError=null \
+  uwsm-app -- firefox "$@"
+
+if [[ -n $url && -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]]; then
+  omarchy-hyprland-focus-app '^firefox$' || true
+fi

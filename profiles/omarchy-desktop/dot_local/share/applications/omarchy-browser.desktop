@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Browser
+Comment=Route links to Firefox (personal) or the default browser (work)
+Exec=link-router %U
+Terminal=false
+Type=Application
+NoDisplay=true
+MimeType=x-scheme-handler/http;x-scheme-handler/https;

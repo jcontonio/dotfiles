@@ -45,3 +45,31 @@ hl.unbind("SUPER + SHIFT + ALT + X") -- was: X Post
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 o.bind("SUPER + SHIFT + E", "Email", "omarchy-launch-or-focus com.fastmail.Fastmail fastmail")
 o.bind("SUPER + SHIFT + ALT + E", "Email compose", 'fastmail "mailto:"')
+
+-- Personal terminal: links clicked in it, and URLs opened by commands run in
+-- it, go to Firefox (see ~/.local/bin/link-router).
+o.bind("SUPER + SHIFT + P", "Personal terminal", "uwsm-app -- ghostty-personal")
+
+-- Personal herdr session, attached in Personal Ghostty. Its server inherits
+-- BROWSER_PROFILE=personal from the first client, so every pane routes to
+-- Firefox. SUPER+CTRL+RETURN stays the default (work) session.
+o.bind("SUPER + CTRL + SHIFT + P", "Personal herdr", "uwsm-app -- ghostty-personal -e herdr --session personal")
+
+-- SUPER+W closes the window, except games (tagged "game" in hypr/hyprland.lua),
+-- so a stray SUPER+W can't kill a game. Dynamic tags carry a trailing "*".
+local function active_window_is_game()
+  local window = hl.get_active_window()
+  for _, tag in ipairs((window and window.tags) or {}) do
+    if tag:gsub("%*$", "") == "game" then
+      return true
+    end
+  end
+  return false
+end
+
+hl.unbind("SUPER + W") -- was: Close window
+o.bind("SUPER + W", "Close window (not games)", function()
+  if not active_window_is_game() then
+    hl.dispatch(hl.dsp.window.close())
+  end
+end)

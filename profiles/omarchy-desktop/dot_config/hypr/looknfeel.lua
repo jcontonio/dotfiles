@@ -64,14 +64,28 @@ hl.window_rule({
 --    must also match on tag = "floating-window", not just class, so it is
 --    re-applied in the same recheck pass as Omarchy's tag-matched size rule --
 --    otherwise Omarchy's rule wins the race and this override is lost.
-hl.window_rule({
-	match = { tag = "floating-window", class = "^1[pP]assword$" },
-	size = "",
-})
+-- hl.window_rule({
+-- 	match = { tag = "floating-window", class = "^1[pP]assword$" },
+-- 	size = "",
+-- })
 
 -- 5. Workspace 1 stays tiled. Keep this below every float rule above so it
 --    takes precedence there.
 hl.window_rule({
 	match = { workspace = "1" },
 	tile = true,
+})
+
+-- 6. Omarchy's default single-window behaviour: when a tiled workspace holds
+--    only one window, constrain it to a square and center it instead of
+--    stretching it across all 3840px. This is a global layout setting, but
+--    workspace 1 is the only workspace that tiles (section 5), so that is the
+--    only place it shows up.
+--
+--    Same setting SUPER + CTRL + BACKSPACE toggles at runtime; setting it here
+--    just makes it the state we boot into.
+hl.config({
+	layout = {
+		single_window_aspect_ratio = { 1, 1 },
+	},
 })

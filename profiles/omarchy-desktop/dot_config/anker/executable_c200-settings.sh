@@ -26,18 +26,16 @@ set -- \
 	zoom_absolute 175 \
 	pan_absolute 10800 \
 	tilt_absolute -10800 \
-	brightness 35 \
-	sharpness 50 \
-	contrast 30 \
-	saturation 44 \
+	brightness 42 \
+	sharpness 25 \
+	contrast 50 \
+	saturation 60 \
 	hue 0 \
-	gamma 380 \
-	power_line_frequency 2 \
-	auto_exposure 1 \
-	exposure_time_absolute 156
+	gamma 400 \
+	power_line_frequency 2
 
-# auto_exposure must land before exposure_time_absolute: the exposure control is
-# inactive until the camera is in manual mode.
+# Exposure is left on the camera's automatic mode: these values were tuned with
+# auto exposure active, and manual mode does not adapt to changing room light.
 while [ "$#" -gt 0 ]; do
 	"$TOOL" --device "$DEV" set "$1" "$2"
 	shift 2

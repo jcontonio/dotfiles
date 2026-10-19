@@ -1,0 +1,6 @@
+[Unit]
+Description=Mount and keep alive SMB shares (personal-drive, shared_drive)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/smb-keepalive.sh

@@ -1,0 +1,28 @@
+[
+  {
+    "plugin_id": "local.worktree-setup",
+    "name": "Worktree setup",
+    "version": "0.1.0",
+    "min_herdr_version": "0.8.2",
+    "description": "Copy the git-ignored files listed in the main checkout's .worktreeinclude into each new worktree, then trust mise and allow direnv",
+    "manifest_path": "/home/jcontonio/.config/herdr/plugins/worktree-setup/herdr-plugin.toml",
+    "plugin_root": "/home/jcontonio/.config/herdr/plugins/worktree-setup",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "events": [
+      {
+        "on": "worktree.created",
+        "command": [
+          "bash",
+          "worktree-setup.sh"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "local"
+    }
+  }
+]

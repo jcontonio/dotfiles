@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Launch Personal Ghostty: its own class so link-router sends clicked links to
+# Firefox, BROWSER_PROFILE=personal for commands run in it, and a tinted
+# background from ~/.config/ghostty/personal.conf (written by the
+# ghostty-personal-tint theme-set hook).
+
+exec ghostty --gtk-single-instance=true \
+  --class=com.mitchellh.ghostty-personal \
+  --env=BROWSER_PROFILE=personal \
+  --config-file="?$HOME/.config/ghostty/personal.conf" \
+  "$@"

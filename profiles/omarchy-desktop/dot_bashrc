@@ -1,0 +1,50 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
+# Restore the default IFS. Something in this session's environment sets it to
+# newline-first, which silently breaks every cobra-generated completion (chezmoi,
+# gh, docker, kubectl, mise). They build their request as "${words[*]:1}", so a
+# newline IFS joins the args with newlines, the newline terminates the command,
+# and the tool only ever sees the subcommand. Symptom: `chezmoi add ~/.confi<TAB>`
+# completes to '' instead of ~/.config/.
+unset IFS
+
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+# /etc/omarchy.conf is written by omarchy-dev-link. When absent, force the
+# package default instead of preserving a stale inherited dev-link value before
+# we decide which rc file to source.
+if [[ -f /etc/omarchy.conf ]]; then
+  source /etc/omarchy.conf
+  export OMARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
+else
+  export OMARCHY_PATH=/usr/share/omarchy
+fi
+source "$OMARCHY_PATH/default/bash/rc"
+
+eval "$(direnv hook bash)"
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+alias gs='git status'
+alias gc='git commit'
+alias gf='git fetch'
+alias gpl='git pull'
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+# Route CLI-opened URLs (gh, railway, etc.) through link-router
+export BROWSER=link-router
+
+# Separate Claude Code accounts: personal (default ~/.claude) vs work
+# BROWSER_PROFILE=personal makes link-router send its URLs (auth etc.) to Firefox
+alias claude-personal='BROWSER_PROFILE=personal claude'
+alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
+
+wt() { local d; d=$(command wt -p "$@") && cd "$d"; }
+
+fzn() {
+  local file
+  file=$(fzf --preview 'bat --color=always {}' --preview-window=up) && nvim "$file"
+}

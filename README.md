@@ -169,3 +169,4 @@ To switch profiles (e.g. moving to a new machine), just change the root `.chezmo
 3. [Setup and Tips for macOS](./docs/macos.md)
 4. [NAS Access & Backups](./docs/nas-backups.md)
 5. [Anker PowerConf C200 Camera](./profiles/omarchy-desktop/system/README.md) (desktop only)
+6. [Browser Routing (Personal vs. Work)](./docs/browser-routing.md) (desktop only)

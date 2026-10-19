@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Ghostty (Personal)
+Comment=Ghostty whose links open in Firefox (see ~/.local/bin/link-router)
+Exec=ghostty-personal
+Icon=com.mitchellh.ghostty
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
+StartupWMClass=com.mitchellh.ghostty-personal
